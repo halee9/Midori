@@ -1,0 +1,51 @@
+<div>
+	{{sum.total | currency}} {{sum.credit | currency}} {{sum.cash | currency}} 
+</div>
+<div ng-repeat="value in hourly track by $index" ng-show="value>0">
+{{ $index }} : {{ value | currency }}
+</div>
+<input type="date" ng-model="date">
+<button ng-click="send(date)">SEND Today's Orders</button>
+<button ng-click="clear()">CLEAR Today's Orders</button>
+<table class="table table-striped">
+	<thead>
+		<th class="text-center">Order Id</th>
+		<th class="text-center">Type</th>
+		<th class="text-center">Order Items</th>
+		<th class="text-center">Subtotal</th>
+		<th class="text-center">tax</th>
+		<th class="text-center">Total</th>
+		<th class="text-center">State</th>
+		<th class="text-center">Payment</th>
+		<th class="text-center">Name/Time</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="order in orders | orderByPriority | orderBy:'created_at':true">
+			<td class="text-center">
+				<div>{{order.created_at | date:'short'}}<br>{{order.id}}</div>
+				<div class="blue" ng-show="order.status">{{order.status}}</div>
+			</td>
+			<td class="text-center">{{order.orderType}}<br>{{order.htType}}</td>
+			<td>
+				<div ng-repeat="item in order.items" style="max-width:300px">
+					<span class="pull-right">{{item.price | currency}}</span>
+					<span ng-show="item.qty>1">{{item.qty}} </span>
+					<span>{{item.name}}</span>
+					<div class="smallfont">{{item | optionsToString}}</div>
+				</div>
+			</td>
+			<td class="text-right">{{ order.subtotal | currency }}</td>
+			<td class="text-right">{{ order.tax | currency }}</td>
+			<td class="text-right">{{ order.total | currency }}</td>
+			<td class="text-center">{{ order.state }}<br>{{ order.diff }}</td>
+			<td class="text-center">
+				<div>{{ order.paymentType }}</div>
+				<div ng-show="order.cashReceived>0">{{ order.cashReceived | currency }} {{ order.cashChanged | currency }}</div>
+			</td>
+			<td class="text-center" style="max-width:150px">
+				<div>{{ order.customer_name }}</div>
+				<div>{{ order.reserved_time | date:'shortTime' }}</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

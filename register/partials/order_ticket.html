@@ -1,0 +1,77 @@
+<div id="receipt_print" ng-show="false">
+	<h4 class="text-center">Midori Teriyaki</h4>
+	<div class="block">
+		<div class="pull-left">1120 Howell St.<br>Seattle, WA 98101<br>(206)624-7273</div>
+		<div class="pull-right text-right">{{order_printing.created_at | date:'longDate'}}<br>{{order_printing.created_at | date:'shortTime'}}</div>
+	</div>
+	<br>
+	<div class="clear" ng-repeat="item in order_printing.items">
+		<div>
+			<span>{{ item.name }}</span>
+			<span ng-show="item.qty-1"> X {{ item.qty }}</span>
+			<span class="pull-right">{{ item.price * item.qty | currency }}</span>
+		</div>
+		<span>{{item | optionsToString}}</span>
+	</div>
+	<br>
+	<div>
+		<table class="pull-right">
+			<tr><td class="text-right">Subtotal: </td><td class="text-right">{{order_printing.subtotal | currency}}</td></tr>
+			<tr><td class="text-right">Tax: </td><td class="text-right">{{order_printing.tax | currency}}</td></tr>
+			<tr><td class="text-right">Total: </td><td class="text-right">{{order_printing.total | currency}}</td></tr>
+		</table>
+	</div>
+	<div class="clear">------------------------------------------------</div>
+	<div class="clear text-center">
+		<span>{{order_printing.orderType}} </span>
+		<span>{{order_printing.htType}} </span>
+		<span>{{order_printing.paymentType}} </span><br>
+	</div>
+	<div class="text-center">
+		<span ng-show="order_printing.reserved_time">at {{order_printing.reserved_time | date: 'shortTime'}}</span>
+		<div ng-show="order_printing.customer_name">{{order_printing.customer_name | firstWord}}</div>
+	</div>
+</div>
+
+<!--
+<div id="order_ticket" class="bold" style="font-size: 50px;" ng-show="true">
+	<div class="smaller text-center" ng-show="order_printing.created_at">{{order_printing.created_at | date:'longDate'}}<br>{{order_printing.created_at | date:'shortTime'}}</div>
+	<div class="smaller text-center" ng-show="!order_printing.created_at">{{ now | date:'longDate'}}<br>{{ now | date:'shortTime'}}</div>
+	<div ng-repeat="item in order_printing.items">
+		<div class="smallfont">
+			<span ng-show="item.qty-1">{{ item.qty }}</span>
+			<span>{{ item.abbr }}</span>
+		</div>
+		<div class="smaller">{{item | optionsToString2}}</div>
+	</div>
+	<div class="smaller text-right">{{order_printing.total | currency}}</div>
+	<div>
+		<div class="pull-right">
+			<span>{{order_printing.number | lastTwoDigits}}</span>
+			<span ng-hide="order_printing.orderType=='In-person'">{{order_printing.orderType | firstOne}}</span>
+		</div>
+		<span>{{order_printing.htType | firstOne}}</span>
+	</div>
+	<div class="text-center" style="font-size: 30px;">
+		<span ng-show="order_printing.reserved_time">at {{order_printing.reserved_time | date: 'shortTime'}}</span>
+		<div ng-show="order_printing.customer_name">{{order_printing.customer_name | firstWord}}</div>
+	</div>
+</div>
+-->
+
+<div ng-show="order_printing.orderType=='In-person'">
+	<div class="text-center bold" style="font-size: 200px; line-height: 110%;">{{order_printing.number | lastTwoDigits}}</div>
+	<div>
+		<div ng-repeat="item in order_printing.items">
+			<span>{{ item.name }}</span>
+			<span ng-show="item.qty-1"> X {{ item.qty }}</span>
+			<span class="pull-right">{{ item.price * item.qty | currency }}</span>
+		</div>
+		<div class="text-right">{{order_printing.subtotal}} + {{order_printing.tax}} = {{order_printing.total | currency}}</div>
+	</div>
+</div>
+
+
+
+
+

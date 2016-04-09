@@ -1,0 +1,24 @@
+
+<div id="order_ticket" class="bold" style="font-size: 50px; width:240px;" ng-show="true">
+	<div class="smaller text-center" ng-show="order_printing.created_at">{{order_printing.created_at | date:'longDate'}}<br>{{order_printing.created_at | date:'shortTime'}}</div>
+	<div class="smaller text-center" ng-show="!order_printing.created_at">{{ now | date:'longDate'}}<br>{{ now | date:'shortTime'}}</div>
+	<div ng-repeat="item in order_printing.items">
+		<div class="smallfont">
+			<span ng-show="item.qty-1">{{ item.qty }}</span>
+			<span>{{ item.abbr }}</span>
+		</div>
+		<div class="smaller">{{item | optionsToString2}}</div>
+	</div>
+	<div class="smaller text-right">{{order_printing.total | currency}}</div>
+	<div>
+		<div class="pull-right">
+			<span>{{order_printing.number | lastTwoDigits}}</span>
+			<span ng-hide="order_printing.orderType=='In-person'">{{order_printing.orderType | firstOne}}</span>
+		</div>
+		<span>{{order_printing.htType | firstOne}}</span>
+	</div>
+	<div class="text-center" style="font-size: 30px;">
+		<span ng-show="order_printing.reserved_time">at {{order_printing.reserved_time | date: 'shortTime'}}</span>
+		<div ng-show="order_printing.customer_name">{{order_printing.customer_name | firstWord}}</div>
+	</div>
+</div>

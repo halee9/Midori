@@ -1,0 +1,24 @@
+<h2>ui.sortable ng1.0 connected lists</h2>
+<!--
+<div class="floatleft">
+    <div ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="screen" ng-repeat="screen in rawScreens">
+        <div class="app" ng-repeat="app in screen">{{$index}} {{app.title}}</div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div class="floatright">
+    <button type="button" ng-click="logModels()">Log Models</button>
+    <ul class="list logList">
+        <li ng-repeat="entry in sortingLog" class="logItem">
+            {{entry}}
+        </li>
+    </ul>
+</div>
+  
+<div class="clear"></div>
+-->
+
+<ul ui-sortable ng-model="items">
+  <li ng-repeat="item in items">{{ item.name }}</li>
+</ul>

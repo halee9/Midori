@@ -1,0 +1,11 @@
+<div class="row">
+	<div ng-repeat="item in order.items">
+		<div class="col-sm-8">{{item.name}}</div>
+		<div class="col-sm-4">{{item.price}}</div>
+	</div>
+	<div class="col-sm-6">
+		<div><span class="text-right col-sm-3">Subtotal: </span><span class="text-right col-sm-3">{{order.subtotal | currency}}</span></div>
+		<div><span class="text-right col-sm-3">Tax: </span><span class="text-right col-sm-3">{{order.tax | currency}}</span></div>
+		<div><span class="text-right col-sm-3">Total: </span><span class="text-right col-sm-3">{{order.total | currency}}</span></div>
+	</div>
+</div>

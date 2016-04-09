@@ -1,0 +1,58 @@
+<div class="row" id="kitchen" style="font-size: 0.9vw; font-family: 'PT Sans', sans-serif;">
+  <div class="bg-black text-yellow" style="font-size: 350%; font-weight: bold; margin-top: -10px; padding: 0 10px;">
+    <div class="pull-right">
+      <span>{{clock | date:'shortTime'}}</span>
+      <button class="btn btn-primary" ng-model="speech_on" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        <span class="glyphicon glyphicon-volume-off" ng-hide="speech_on"></span>
+        <span class="glyphicon glyphicon-volume-up" ng-show="speech_on"></span>
+      </button>
+      <button class="btn btn-success" ng-model="list_on" btn-checkbox btn-checkbox-true=true btn-checkbox-false=false>
+        <span class="glyphicon glyphicon-align-justify"></span>
+      </button>
+    </div>
+    <div ng-click="sum = (sum == true) ? false : true">
+      <span ng-show="!sum">MIDORI</span>
+      <span ng-show="sum">
+        <span>{{0 | number:0}} </span>
+        <span class="text-blue" style="font-size: 60%;">{{0 | number:0}} {{0 | number:0}}</span>
+        <!--
+        <span>{{pre_total | number:0}} </span>
+        <span class="text-blue" style="font-size: 60%;">{{credit_total | number:0}} {{cash_total | number:0}}</span>
+    -->
+      </span>
+    </div>
+  </div>
+
+  <ul id="orderlist" class="col-sm-4 list-group" style="font-size: 350%; font-weight: bold;">
+    <li ng-repeat="order in orders | orderByPriority | orderBy:'created_at'" ng-if="order.orderType=='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived')" style="border-bottom: 3px solid #333; padding: 5px">
+      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+    </li>
+  </ul>
+  <ul id="orderlist" class="col-sm-4 list-group" style="font-size: 350%; font-weight: bold;">
+    <li ng-repeat="order in orders | orderByPriority | orderBy:'created_at'" ng-if="order.orderType!='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived') && (!order.reserved_time || order.reserved_time=='') && order.htType=='Togo'" style="border-bottom: 3px solid #333; padding: 5px">
+      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+    </li>
+  </ul>
+  <ul id="orderlist" class="col-sm-4 list-group" style="font-size: 350%; font-weight: bold;">
+    <li ng-repeat="order in orders | orderByPriority | orderBy:'reserved_time'" ng-if="order.orderType!='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived') && (order.reserved_time && order.htType=='Togo')" style="border-bottom: 3px solid #333; padding: 5px">
+      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+    </li>
+    <li ng-repeat="order in orders | orderByPriority | orderBy:'created_at'" ng-if="order.orderType!='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived') && (order.htType!='Togo')" style="border-bottom: 3px solid #333; padding: 5px">
+      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+    </li>
+  </ul>
+	<div id="orderlist" class="popup_right" style="font-size: 200%; font-weight: bold;" ng-if="list_on">
+		<table class="table table-condensed">
+  			<tr ng-repeat="order in orders | orderByPriority | orderBy:'created_at':true | limitTo: 100" ng-if="(order.state=='Ready'||order.state=='Done'||order.state=='Canceled')">
+  				<td>
+  					<kitchenlist order="order" types="types" done="kitchen_back(order)"></kitchenlist>
+  				</td>
+  			</tr>
+  		</table>
+	</div>
+</div>
+<div ng-hide="true">
+  <audio id="doorbell" controls>
+    <source src="img/beep-1.mp3" type="audio/mpeg">
+  </audio>
+</div>

@@ -1,0 +1,134 @@
+<div class="container row hidden-print">
+	<div>
+		<h1>New Payrolls</h1>
+	</div>
+	<div class="col-sm-4">
+		<div>
+			<input type="date" class="form-control" ng-init="start_date=today" ng-model="start_date">-
+			<input type="date" class="form-control" ng-init="end_date=today" ng-model="end_date">
+			<button class="btn btn-default" ng-click="getEmployees">Submit</button>
+		</div>
+		<hr>
+		<table class="table hidden-print">
+			<thead>
+				<th>Name</th>
+				<th>Wage</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="timesheet in timesheets">
+					<td><a href="" ng-click="getDetails(timesheet)">{{timesheet.name}}</a></td>
+					<td>{{timesheet.wage}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-sm-8">
+		<div><span>{{ worktable.name }} | {{ worktable.wage | currency }} </span>
+			<span>Date: <input type="date" ng-model="worktable.paydate"></span>
+			<button ng-click="setPayroll(worktable)">Set</button>
+		</div>
+		<table class="table">
+			<thead>
+				<th>Check-In</th>
+				<th>Check-Out</th>
+				<th>Minuates</th>
+				<th>Pay Hour</th>
+				<th>Pay</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="daily in payroll.payDetails | orderByPriority | orderBy:'checkin':true">
+					<td>{{daily.checkin | date:'short'}}</td>
+					<td>{{daily.checkout | date:'short'}}</td>
+					<td>{{daily.workMinuates | hours}}</td>
+					<td>{{daily.payHours}}H {{daily.payMinuates}}M</td>
+					<td>{{daily.pay | currency}}</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="text-right">Total: </td>
+					<td>{{payroll.total | currency}}</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="text-right">Tip: </td>
+					<td><input type="number" ng-model="payroll.tip"></td>
+				</tr>
+				<tr>
+					<td colspan="4" class="text-right">Pay Total: </td>
+					<td>{{payroll.tip + payroll.total | currency}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table">
+			<thead>
+				<th>Check-In</th>
+				<th>Check-Out</th>
+				<th>Minuates</th>
+				<th>Wages</th>
+				<th>Hours</th>
+				<th>Minuates</th>
+				<th>Pay</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="daily in worktable.worktimes | orderByPriority | orderBy:'checkin':true">
+					<td>{{daily.checkin | date:'short'}}</td>
+					<td>{{daily.checkout | date:'short'}}</td>
+					<td>{{daily.workMinuates | hours}}</td>
+					<td>{{daily.wage | currency}}</td>
+					<td><input type="number" ng-init="daily.payHours = Math.floor(daily.workMinuates / 60); daily.payMinuates = 0; setPay(worktable, daily)" ng-model="daily.payHours" ng-change="setPay(worktable, daily)"></td>
+					<td>
+						<select ng-model="daily.payMinuates" ng-change="setPay(worktable, daily)">
+							<option>0</option>
+							<option>15</option>
+							<option>30</option>
+							<option>45</option>
+						</select>
+					</td>
+					<td>{{daily.pay | currency}}</td>
+					<!--<td><input type="text" ng-model="daily.pay" value="{{worktable.wage * (daily.payHours + daily.payMinuates / 60)}}"></td>-->
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+</div>
+
+<div class="visible-print">
+	<h2>{{ worktable.name }}</h2>
+	<div>Pay Date: {{worktable.paydate}}</div>
+	<hr>
+	</div>
+	<table class="table">
+		<thead>
+			<th>Check-In</th>
+			<th>Check-Out</th>
+			<th>Pay Hour</th>
+			<th>Pay</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="daily in payroll.payDetails | orderByPriority | orderBy:'checkin':true">
+				<td>{{daily.checkin | date:'short'}}</td>
+				<td>{{daily.checkout | date:'short'}}</td>
+				<td>{{daily.payHours}}H {{daily.payMinuates}}M</td>
+				<td>{{daily.pay | currency}}</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="text-right">Total: </td>
+				<td>{{payroll.total | currency}}</td>
+			</tr>
+			<!--
+			<tr>
+				<td colspan="4" class="text-right">Tip: </td>
+				<td>{{payroll.tip | currency}}</td>
+			</tr>
+			<tr>
+				<td colspan="4" class="text-right">Pay Total: </td>
+				<td>{{payroll.tip + payroll.total | currency}}</td>
+			</tr>
+		-->
+		</tbody>
+	</table>
+</div>
+
+
+
+

@@ -1,0 +1,147 @@
+
+<input type="date" ng-model="settlement.date">
+<button ng-click="reSettle(settlement.date)">ReSettlement</button>
+<button ng-click="send(settlement.date)">SEND Today's Orders</button>
+<button ng-click="clear()">CLEAR Today's Orders</button>
+<div class="row">
+<div class="col-sm-8">
+	<table class="table text-right">
+		<thead>
+			<th class="text-right">Hour</th>
+			<th class="text-right">Total</th>
+			<th class="text-right">Credit</th>
+			<th class="text-right">Cash</th>
+			<th class="text-right">Total</th>
+			<th class="text-right">Credit</th>
+			<th class="text-right">Cash</th>
+			<th class="text-right">Unpaid</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="hour in settlement.hourly track by $index" ng-show="hour.total>0" ng-class="{blue: ($index==13)}">
+				<td>{{$index}}</td>
+				<td>{{hour.accumulate.total | currency}}</td>
+				<td>{{hour.accumulate.credit | currency}}</td>
+				<td>{{hour.accumulate.cash | currency}}</td>
+				<td class="blue">{{hour.total | currency}}</td>
+				<td>{{hour.credit | currency}}</td>
+				<td>{{hour.cash | currency}}</td>
+				<td>{{hour.unpaid | currency}}</td>
+			</tr>
+			<tr>
+				<td colspan='2'>Total</td>
+				<td>{{settlement.sum.count}}</td>
+				<td>{{settlement.sum.total/settlement.sum.count | currency}}</td>
+				<td class="blue">{{settlement.sum.total | currency}}</td>
+				<td>{{settlement.sum.credit | currency}}</td>
+				<td>{{settlement.sum.cash | currency}}</td>
+				<td>{{settlement.sum.unpaid | currency}}</td>
+			</tr>
+		<tr>
+			<td class="text-center"colspan="8">
+				<button ng-click="submitSettlement(settlement.date)">Submit Settlement Data</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div class="col-sm-4">
+	<table>
+		<tr>
+			<td class="text-center" colspan="3">{{ earn.created_at | date:'short'}}</td>
+		</tr>
+		<tr>
+			<td class="text-right">${{earn.over_50}} = </td>
+			<td class="text-right">{{earn.over_50 | currency}}</td>
+			<td width='80'><input type="number" class="form-control" name="over_50" ng-model="earn.over_50" ng-init="earn.over_50=0"></td>
+		</tr>
+		<tr>
+			<td class="text-right">$20 X {{earn.bill_20}} = </td>
+			<td class="text-right">{{earn.bill_20 * 20 | currency}}</td>
+			<td><input type="number" class="form-control" name="bill_20" ng-model="earn.bill_20" ng-init="earn.bill_20=0"></td>
+		</tr>
+		<tr>
+			<td class="text-right">$10 X {{earn.bill_10}} = </td>
+			<td class="text-right">{{earn.bill_10 * 10 | currency}}</td>
+			<td><input type="number" class="form-control" name="bill_10" ng-model="earn.bill_10" ng-init="earn.bill_10=0"></td>
+		</tr>
+		<tr>
+			<td class="text-right">$5 X {{earn.bill_5}} = </td>
+			<td class="text-right">{{earn.bill_5 * 5 | currency}}</td>
+			<td><input type="number" class="form-control" name="bill_5" ng-model="earn.bill_5" ng-init="earn.bill_5=12"></td>
+		</tr>
+		<tr>
+			<td class="text-right">$1 X {{earn.bill_1}} = </td>
+			<td class="text-right">{{earn.bill_1 | currency}}</td>
+			<td><input type="number" class="form-control" name="bill_1" ng-model="earn.bill_1" ng-init="earn.bill_1=40"></td>
+		</tr>
+		<tr>
+			<td class="text-right">Bill total: </td>
+			<td class="text-right">{{earn.bill_total | currency}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="text-right">Init Balance: </td>
+			<td class="text-right">{{earn.subtract | currency}}</td>
+			<td><input type="number" class="form-control" name="subtract" ng-model="earn.subtract" ng-init="earn.subtract=100"></td>
+		</tr>
+		<tr>
+			<td class="text-right">Cash earned: </td>
+			<td class="text-right">{{earn.cash | currency}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="text-right">Credit earned: </td>
+			<td class="text-right">{{earn.credit | currency}}</td>
+			<td><input type="number" class="form-control" name="credit" ng-model="earn.credit" ng-init="earn.credit=0"></td>
+		</tr>
+		<tr>
+			<td class="text-right">Total earned: </td>
+			<td class="text-right">{{earn.total | currency}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="text-right">Tip credit: </td>
+			<td class="text-right">{{earn.tipCredit | currency}}</td>
+			<td><input type="number" class="form-control" name="tipCredit" ng-model="earn.tipCredit" ng-init="earn.tipCredit=0"></td>
+		</tr>
+		<tr>
+			<td class="text-right">Tip cash: </td>
+			<td class="text-right">{{earn.tipCash | currency}}</td>
+			<td><input type="number" class="form-control" name="tipCash" ng-model="earn.tipCash" ng-init="earn.tipCash=0"></td>
+		</tr>
+		<tr>
+			<td class="text-center"colspan="3">
+				<button ng-click="submitEarning()">Submit Earning Data</button>
+			</td>
+		</tr>
+
+	</table>
+	<table class="table">
+		<tr>
+			<th></th>
+			<th>Register</th>
+			<th>Real</th>
+			<th>Diff</th>
+		</tr>
+		<tr>
+			<td>Cash</td>
+			<td>{{settlement.sum.cash | currency}}</td>
+			<td>{{earn.cash | currency}}</td>
+			<td>{{settlement.sum.cash - earn.cash | currency}}</td>
+		</tr>
+		<tr>
+			<td>Credit</td>
+			<td>{{settlement.sum.credit + earn.tipCredit | currency}}</td>
+			<td>{{earn.credit | currency}}</td>
+			<td>{{settlement.sum.credit + earn.tipCredit - earn.credit | currency}}</td>
+		</tr>
+		<tr>
+			<td>Total</td>
+			<td>{{settlement.sum.total + earn.tipCredit | currency}}</td>
+			<td>{{earn.total | currency}}</td>
+			<td>{{settlement.sum.total + earn.tipCredit - earn.total | currency}}</td>
+		</tr>
+	</table>
+</div>
+
+</div>

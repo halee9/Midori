@@ -1,0 +1,42 @@
+<div class="container" style="max-width: 600px;">
+<h1 class="text-center">New Timesheet</h1>
+<div class="row">
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" placeholder="Name" ng-model="employee.name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">E-mail</label>
+			<div class="col-sm-10">
+				<input type="email" class="form-control" placeholder="Email" ng-model="employee.email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Phone</label>
+			<div class="col-sm-10">
+				<input type="tel" class="form-control" placeholder="Phone Number" ng-model="employee.phone">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Passcord</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" placeholder="4 Digit Only" ng-model="employee.passcode">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Wage per hour</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" ng-model="employee.wage">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default" ng-click="signup()">Sign up</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
