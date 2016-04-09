@@ -31,7 +31,7 @@ function setFireOnline(teo) {
 	order.orderType = "Online";
 	if (teo.order_type == "P") order.htType = "Togo";
 	else order.htType = "Here";
-	
+
 	order.paymentType = "Unpaid";
 	order.number = "No";
 	order.state = "Placed";
@@ -49,9 +49,9 @@ function setFireOnline(teo) {
 	}
 	order.created_at = (new Date()).toJSON();
 	console.log(order.created_at);
-	
+
 	fireOnline.push(order);
-	
+
 }
 */
 
@@ -61,7 +61,7 @@ var G_option_type = {
 	'C' : { code : 'C' ,name : 'Choice of Rice' , abbr: '', choice_type : 'Single' },
 	'D' : { code : 'D' ,name : 'Choice of Drink' , abbr: '', choice_type : 'Single' }
 	};
-var G_order_status = { 
+var G_order_status = {
 		"X" : { name : "Canceled",
 				color : "#aaa" },
 		"P" : { name : "Placed",
@@ -81,7 +81,7 @@ function redirect(loc) {
 	window.location.replace("http://teriyakionline.com/store/"+loc);
 }
 */
-	
+
 function redirect(loc, mode) {
 	var ts = new Date().getTime();
 	if (loc.indexOf("?") > 0) {
@@ -97,7 +97,7 @@ function redirect(loc, mode) {
 		window.location.href = loc+tail;
 	}
 }
-	
+
 function popupOpen(id) {
 	//Get the screen height and width
 	var maskHeight = $(document).height();
@@ -106,16 +106,16 @@ function popupOpen(id) {
 	//Set heigth and width to mask to fill up the whole screen
 	$('#mask').css({'width':maskWidth,'height':maskHeight});
 	//$('#mask').css('position', 'fixed');
-	
-	//transition effect		
-	//$('#mask').show(0,0.4);	
-	//$('#mask').fadeIn(0);	
-	$('#mask').fadeTo(0,0.5);	
+
+	//transition effect
+	//$('#mask').show(0,0.4);
+	//$('#mask').fadeIn(0);
+	$('#mask').fadeTo(0,0.5);
 
 	//Get the window height and width
 	var winH = $(window).height();
 	var winW = $(window).width();
-            
+
 	//Set the popup window to center
 	//alert(getPosition(document.getElementById('popup'))) ;
 	var scrollTop = $(window).scrollTop();
@@ -126,22 +126,22 @@ function popupOpen(id) {
 	$(id).css('left', winW/2-$(id).width()/2);
 	//$(id).css('position', 'fixed');
 	//alert($(id).height() + " " + $(id).width());
-	//$('html').css('overflow', 'hidden'); 
+	//$('html').css('overflow', 'hidden');
 	//transition effect
 	$(id).show();
-	//$(id).fadeIn(); 
-	
+	//$(id).fadeIn();
+
 	$('#mask').click(function () {
 		if (id == '#popup') {
 			$(id).hide();
 			$('#mask').hide();
 		}
-	});			
+	});
 	$('.closeImg').click(function () {
 		$(id).hide();
 		$('#mask').hide();
-	});			
-	
+	});
+
 	//if window is resized
 	$(window).resize(function () {
 		//Get the screen height and width
@@ -171,7 +171,7 @@ function getPosition(who){
         T+= who.offsetTop;
         who= who.offsetParent;
     }
-    return [L,T];    
+    return [L,T];
 }
 
 function format_phone_number(phone) {
@@ -188,14 +188,14 @@ function format_datetime(d) {
 	var month = d.getMonth()+1;
 	var dd = d.getDate();
 	var year = d.getFullYear();
-	
+
 	var hh = (d.getHours()>12) ? d.getHours()-12 : d.getHours();
 	var ampm = (d.getHours()<12) ? 'AM' : 'PM';
 	var mm = d.getMinutes();
 	var mm = (mm < 10) ? '0'+mm : mm;
 	var ss = d.getSeconds();
 	var ss = (ss < 10) ? '0'+ss : ss;
-	
+
 	var datetime = {};
 	datetime.date = month + "/" + dd + "/" + year;
 	datetime.time = hh + ":" + mm + ":" + ss + " " + ampm;
@@ -328,7 +328,7 @@ function set_total_price(menu, jquery_id) {
 	order.subtotal = subtotal;
 	order.tax = tax;
 	order.total = total;
-	
+
 	$(jquery_id+' #special_instruction').each(function(){
 		if (this.value !== this.defaultValue) {
 			order.special_instruction = this.value;
@@ -370,7 +370,7 @@ function recalcurating_price(menu) {
 	order.subtotal = subtotal;
 	order.tax = tax;
 	order.total = total;
-	
+
 	$('#add_order #special_instruction').each(function(){
 		if (this.value !== this.defaultValue) {
 			order.special_instruction = this.value;
@@ -488,16 +488,16 @@ function recalc_cookie_orders_total(){
     sum.tax = parseFloat(sum.tax.toFixed(2));
     sum.total = sum.subtotal + sum.tax;
     sum.total = parseFloat(sum.total.toFixed(2));
-    
+
     return sum;
 }
 
 function get_desired_select_time(prep, interval, rep) {
-	var d = new Date(); 
+	var d = new Date();
 	d.setMinutes(d.getMinutes() + parseInt(prep));
 	var min = d.getMinutes();
 	var min = Math.ceil(min/10)*10;
-	
+
 	var html = "<select id='select_pickup_time'>"
 		+ "<option selected='selected'>ASAP</option>";
 	for (var i=0; i < rep; i++) {
@@ -577,7 +577,7 @@ function check_sidebar(){
 
 
 function set_order_cart(order, id){
-	
+
     var option_arr = [];
     for (var j=0; j<order.option.length; j++){
         option_arr[option_arr.length] = order.option[j].abbr + " " + order.option[j].name;
@@ -587,7 +587,7 @@ function set_order_cart(order, id){
     }
     $("#cart_row .option").html(option_arr.join(", "));
 	$("#cart_row .order_name").html(order.menu_name);
-		
+
 	$("#cart_row .order_qty select option").removeAttr("selected");
 	$("#cart_row .order_qty select option").each(function(){
 		//if ($(this).attr("selected") == true) {
@@ -600,14 +600,14 @@ function set_order_cart(order, id){
 	});
 	$("#cart_row .order_qty .just_display").html(order.qty).hide();
 	$("#cart_row .order_qty select").attr("onChange","renew_order_item("+id+")");
-	
+
 	$("#cart_row .order_subtotal").html(order.subtotal.toFixed(2));
 	$("#cart_row .order_del").attr("onClick","delete_order_item("+id+")");
 	$("#cart_row").clone().appendTo("#order_cart_main .table_body").attr("id","cart_row"+id).show();
-	
+
 	check_sidebar();
 	set_summary_total();
-	
+
 	$("#order_total_top").show();
 }
 
@@ -645,7 +645,7 @@ function set_default_order(menu) {
 	order.subtotal = tt.subtotal;
 	order.tax = tt.tax;
 	order.total = tt.total;
-	return order;	
+	return order;
 }
 
 function compute_order_total(price, qty) {
@@ -717,11 +717,11 @@ function get_user_info(user_id) {
             $("#phone").html(format_phone_number(user.phone));
             $("#carrier").html(user.carrier);
             $("#saved_points").html(user.point_usable);
-            
+
             if (user.point_usable >= get_order_total().amount) {
             	$("#payment_type[value='P']").removeAttr("disabled");
             }
-		    
+
 		    $('#modify_info').click(function(){
 		        //location.replace('t_signin.php?action=modify&hr='+G_PGM+'.php');
 		        redirect('t_signin.php?action=modify&hr='+G_PGM+'.php',"rep");
@@ -810,7 +810,7 @@ function check_go_where(link) {
 }
 
 function set_signup_info(){
-	
+
     $('#signup_form input')
         .focus(function(){
             if (this.value === this.defaultValue) {
@@ -837,7 +837,7 @@ function set_signup_info(){
 				this.value = capitalizeWords(this.value);
 			}
     });
-	
+
     /*
     $('#phone').keydown(function(event){
 		// 0: 48, 9: 57, -: 109, backspace: 8, delete: 46, tab: 9, arrow left:37, arrow right:39, insert:45
@@ -860,12 +860,12 @@ function set_signup_info(){
 }
 
 function signup_submit() {
-    
+
     $('#cancel').click(function(){
 		$('#signup_container').hide();
 		$('#signin_container').show();
     });
-    
+
     $('#signup_form').submit(function(){
         if (!check_signup_form()) return false;
         //$('#signup').attr("disabled","true");
@@ -902,16 +902,16 @@ function signup_submit() {
 }
 
 function check_signup_form() {
-	
+
     var re_name = /^[a-zA-Z0-9_-]{1,16}$/;
     var re_pass = /^[a-zA-Z0-9_-]{1,16}$/;
     var re_email = /^([\w\.-]+)@([a-z\d\.-]+)\.([a-z\.]{2,6})$/;
     var re_url = /^(https?:\/\/)?([a-z\d\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/;
     var re_phone = /^[0-9]{10,10}$/;
-    
+
 	var status = true;
 	$('.input_errmsg').remove();
-	
+
 	var carrier = $("#carrier option:selected").text();
 	if (carrier == "Select") {
 		$("#carrier").parent().parent().after("<div class='input_errmsg'>Please select the name of your carrier.</div>");
@@ -919,7 +919,7 @@ function check_signup_form() {
 		status = false;
 		return false;
 	}
-	
+
 	$('#signup_form input').each(function(){
 		//$(this).next('.input_errmsg').remove();
 		if (this.value === this.defaultValue) {
@@ -979,13 +979,13 @@ function modify_user_info(user_id) {
             $("#phone").val(user.phone);
             $("#carrier option").filter(function() {
     			//may want to use $.trim in here
-    			return $(this).text() == user.carrier; 
+    			return $(this).text() == user.carrier;
 			}).attr('selected', true);
             $("#email").val(user.email);
             $("button#signup").html("Submit");
-            
+
             submit_modify_user();
-            
+
             $("button#cancel").click(function(){
             	//location.replace(G_href);
             	redirect(G_href, "rep");
@@ -1025,7 +1025,7 @@ function submit_modify_user() {
         });
         return false;
     });
-	
+
 }
 
 //--- End of Sign in Fuctions ---
@@ -1091,7 +1091,7 @@ function reset_order_cookie(obj) {
 	order.tax = tax;
 	order.total = total;
 	order.special_instruction = obj.special_instruction;
-	
+
 	set_cookie_order(order);
 }
 
@@ -1120,7 +1120,7 @@ function reset_option_form(menu) {
     	$("#side_menu").hide();
     	$("#rice_type").hide();
     }
-    
+
     if (menu.spicy_option == "Y") {
     	$("#make_spicy div").show();
     	$("#make_spicy #spicy_n").attr("checked",true);
@@ -1135,7 +1135,7 @@ function reset_option_form(menu) {
     //else {
     //	$("#how_spicy").hide();
     //}
-    
+
     if (menu.breast_option == "Y") {
     	$("#substitute div").show();
     	$("#substitute #white_meat").attr("checked",false);
@@ -1143,7 +1143,7 @@ function reset_option_form(menu) {
     else {
     	$("#substitute").hide();
     }
-    
+
     if (menu.extra_option == "Y") {
     	var exOpt = getOptionsByCode(G_options, menu.extra_code);
     	if (exOpt) {
@@ -1156,16 +1156,16 @@ function reset_option_form(menu) {
     else {
     	$("#extra_order div.extra_no").show();
     	$("#extra_order div.extra_yes").hide();
-    	
+
     }
-    
+
 	$('input#special_instruction').each(function(){
 		this.value = this.defaultValue;
 	});
-	
+
     $("#special_area div").show();
-    
-    
+
+
     $("#option_container label").each(function(){
     	var price = $(this).prev().val();
     	if (price > 0) {
@@ -1173,7 +1173,7 @@ function reset_option_form(menu) {
     		$(this).after("<span>&nbsp;(+$"+price.toString(2)+")</span>");
     	}
     });
-    
+
     set_total_price(menu, '#menu_container');
 }
 function showTypeOfRice() {
@@ -1219,10 +1219,10 @@ function show_combination_table() {
 	$("#combination_table td").css("padding","10px");
 	$("#combination_table tr:even").addClass("even_bg");
     $("#combination_table tr:odd").addClass("odd_bg");
-    
+
     var defalt_name = $(".menu_name").html();
     var defalt_price = $(".menu_price").html();
-    
+
     $("#combination_table .combo input").change(function(){
 		var len = $(".combo input:checked").length;
 		if (len > 2) {
@@ -1236,7 +1236,7 @@ function show_combination_table() {
 			$(".menu_price").html(defalt_price);
 			$('.order_summary').hide();
 		}
-		
+
     	var id = $(this).attr("id").replace("combo","spicy");
     	if ($(this).is(":checked")) {
     		$("#"+id).attr("disabled",false);
@@ -1246,11 +1246,11 @@ function show_combination_table() {
     		$("#"+id).attr("checked",false);
     	}
     });
-    
+
     $("#combination_table .spicy input").change(function(){
     	check_combo_done();
     });
-    
+
 }
 
 function check_combo_done() {

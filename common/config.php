@@ -1,7 +1,7 @@
 <?php
 	$hostname='localhost';
-	$databasename='teriyak1_online';
-	$username="teriyak1";
-	$password='coveN13 13';
-	
+	$databasename='midori';
+	$username="admin6sHzAH1";
+	$password='1Fd7JVegaKKg';
+
 ?>
