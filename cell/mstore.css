@@ -1,0 +1,425 @@
+a:link {color:Royalblue; text-decoration: none}
+a:visited {color:Royalblue; text-decoration: none}
+a:hover {color:Royalblue; text-decoration: underline}
+a:active {color:Royalblue; text-decoration: none}
+
+body {
+	font-family: Helvetica, Arial,sans-serif;
+	font-size: 16px;
+	padding: 0px;
+	background-color: white;
+	margin: 0px;
+	line-height: 120%;
+	font-weight: bold;
+	-webkit-text-size-adjust:none; 
+}
+span {
+	display: inline-block;
+}
+button {
+	font-size:16px;
+	padding: 5px 10px;
+	border-radius:7px;
+	background-color: #eee;
+	color: #333;
+	font-weight: bold;
+	cursor: pointer;
+	margin: 5px;
+}
+.button_container {
+	text-align:center;
+	clear:both;
+	padding: 10px 0;
+}
+.header_button_container {
+	height: 44px;
+	width: 100%;
+	display: table;
+}
+.header_button_container button {
+	background-color: #800000;
+	color: #ddd;
+	padding: 5px 0px;
+	width: 80px;
+	
+}
+#header {
+	width: 100%;
+	border-bottom: 1px solid #333;
+	background-image: url("../common/img/bar_black.png");
+	text-align: center;
+    overflow: hidden;
+    color: #fff;
+    font-weight: bold;
+    height: 44px;
+}
+#header .left {
+	float: left;
+}
+#header .center {
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	padding-top: 10px;
+}
+#header .right {
+	float: right;
+}
+#header button {
+	background-image: url("../common/img/bar_gray.png");
+	color: white;
+	min-width: 60px;
+}
+#user_container {
+	clear: both;
+	width: 100%;
+	display: none;
+}
+#user_container .user_left {
+	padding: 10px;
+	float: left;
+	color: royalBlue;
+}
+#user_container .user_right {
+	float: right;
+}
+
+#main_container {
+	width: 100%;
+	clear: both;
+}
+
+#footer {
+	width: 100%;
+	border-top: 1px solid #aaa;
+	text-align: center;
+	font-size: 11px;
+	color: #aaa;
+	height: 70px;
+	clear: both;
+	background-color: #ddd;
+}
+#footer button {
+	display: none;
+}
+
+#header .header_title {
+	padding: 4px 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 100%;
+}
+#header .page_title {
+	padding: 2px 0;
+	font-size: 16px;
+	line-height: 100%;
+
+}
+
+div.group_name {
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	border-top: 1px solid #777;
+	border-bottom: 1px solid #777;
+	background-color: #ddd;
+}
+
+ul, li {
+	list-style: none outside none;
+}
+ul {
+	padding: 0;
+	margin: 0;
+	clear: both;
+}
+
+li {
+	padding: 10px 0;
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom : 1px dotted #aaa;
+	color: #333 !important;
+	line-height: 120%;
+	clear: both;
+}
+
+li .name {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-left: 3%;
+}
+
+li .price {
+	width: 17%;
+	float: right;
+	padding-right: 3%;
+	text-align: right;
+}
+li .date {
+	width: 20%;
+	padding-left: 3%;
+}
+li span.field {
+	width: 100px;
+	padding-left: 10px;
+	vertical-align: top;
+}
+li span.data {
+	padding-right: 10px;
+}
+
+/*------ Holy Grail -------*/
+body {
+		min-width: 320px;  /* 2x LC width + RC width */
+}
+li.order_list {		/* Holy Grail Container */
+		padding-left: 30px;		/* LC width */
+		padding-right: 110px;	/* RC width */
+		border-bottom: 1px solid #aaa;
+		height: 20px;
+		min-width: 180px;
+}
+li.order_list span {	/* all columns */
+		float: left;
+		position: relative;
+}
+li.order_list .orders {	/* Center */
+		width: 100%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+}
+li.order_list .number {	/* Left */
+		width: 30px;	/* LC width */
+		margin-left: -100%;
+		right: 30px;	/* LC width */
+		text-align: center;
+}
+li.order_list .customer {	/* Right */
+		width: 100px;	/* RC width */
+		padding-right: 10px;
+		margin-right: -110px;	/* RC width */
+		text-align: center;
+}
+/*** IE6 Fix ***/
+* html li.order_list .number {
+		left: 30px;           /* RC width */
+}
+
+/*-------------------------------------------*/
+
+
+
+/*
+li.order_list .number {
+		width: 20px;
+		padding-left: 10px;
+		text-align: center;
+}
+li.order_list .orders {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-left: 10px;
+}
+
+li.order_list .customer {
+		width: 100px;
+		padding-right: 10px;
+		float: right;
+		text-align: center;
+}
+*/
+.order_type_name {
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom : 1px solid #aaa;
+	color: #333;
+	padding: 10px 0px;
+}
+.order_elements {
+	font-size: 16px;
+	border-bottom : 1px dotted #aaa;
+	color: #333;
+	padding: 10px 0px 10px 20px;
+}
+.sum_container {
+	font-size:16px;
+	float:right;
+	text-align:right;
+	margin-top: 10px;
+}
+.sum_item {
+	font-size:16px;
+	font-weight: bold;
+	color: #333;
+	margin-right: 25px;
+	padding: 5px 10px;
+}
+.sum_last_item {
+	color: red;
+	border-top: 1px solid #aaa;
+}
+.sum_title {
+	width:80px;
+	text-align: right;
+}
+.sum_data {
+	width:60px;
+	text-align: right;
+}
+.cart_label{
+	font-weight: bold;
+	text-align: left;
+	padding: 10px 0;
+	background-color: #ddd;
+        border-bottom: 1px solid #aaa;
+}
+.cart_label span{
+	text-align: center;
+}
+.cart {
+	font-size: 16px;
+}
+.cart_item{
+	display: table;
+	width:100%;
+	font-weight: bold;
+	border-bottom: 1px dotted #aaa;
+	clear: both;
+	padding: 5px 0;
+}
+.cart_item_option,.cart_item_special {
+	clear:both;
+	font-weight: normal;
+	padding: 0px 5px 5px 6%;
+	color: #666;
+}
+
+ul.order_type {
+	clear: both;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	background-color: #ddd;
+}
+.order_type li{
+	padding: 10px 5px;
+	display: inline-block;
+}
+.order_type span{
+	padding-left: 5px;
+}
+
+
+.form_container {
+	position:relative;
+	padding: 10px;
+	left: 50%;
+	width: 300px;
+	margin-left: -160px;
+}
+.form_container  div {
+	padding: 5px 5px;
+}
+.form_container  .title {
+	font-weight: bold;
+	margin-top: 10px;
+}
+.form_container  .message {
+	font-size: 14px;
+	color: red;
+}
+.form_container  input {
+	width: 270px;
+	height: 25px;
+	font-size: 16px;
+}
+.content li {
+	padding: 10px;
+}
+.content li span{
+	padding-left: 5px;
+}
+select {
+	font-size: 16px;
+	margin-left: 10px;
+}
+#main_container .button_container button {
+	width: 250px;
+	padding: 10px 0;
+	/*display: block;*/
+}
+#main_container .button_container button.main {
+	background-color: #660000;
+	color: #fff;
+}
+
+#message {
+    width: 100%;
+	background-color: #333;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	color: #ddd;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 16px;
+	font-weight: bold;
+	display: none;
+}
+
+.text_box {
+    text-align:center;
+	background-color: #333;
+	padding: 5px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ddd;
+	cursor: pointer;
+}
+
+div.loading {
+		width: 100%;
+		height: 50px;
+		background-image: url('../common/img/loading.gif');
+		background-repeat:no-repeat;
+		background-position:center center;
+}
+
+
+/*------ Holy Grail -------*/
+.hg_container {		/* Holy Grail Container */
+		padding-left: 100px;		/* LC width */
+		padding-right: 100px;	/* RC width */
+		overflow: hidden;
+}
+.hg_column {	/* all columns */
+		float: left;
+		position: relative;
+}
+.hg_center {	/* Center */
+		width: 100%;
+}
+.hg_left {	/* Left */
+		width: 100px;	/* LC width */
+		margin-left: -100%;
+		right: 100px;	/* LC width */
+}
+.hg_right {	/* Right */
+		width: 100px;	/* RC width */
+		margin-right: -100px;	/* RC width */
+}
+/*** IE6 Fix ***/
+* html .hg_container .hg_left {
+		left: 100px;           /* RC width */
+}
+
+
+	#checkout_container .sub_msg {
+		margin: 5px 10px 5px 20px;
+		vertical-align: top;
+		font-weight: normal;
+	}

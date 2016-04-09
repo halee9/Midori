@@ -1,0 +1,33 @@
+<script type="text/javascript">
+
+function convertTime(t) {
+	var arr = t.split(" ");
+	var ampm = arr[1];
+	console.log(ampm);
+	var arr2 = arr[0].split(":");
+	var hour = parseInt(arr2[0]);
+	var min = parseInt(arr2[1]);
+	//hour = (hour == 12 && ampm == "AM") ? 0 : hour;
+	hour = (ampm == "AM" || ( hour == 12 && ampm == "PM" )) ? hour : hour+12;
+	var d = new Date();
+	d.setHours(hour);
+	d.setMinutes(min);
+	return (new Date(d)).toJSON();
+}
+
+var t = "1:20 PM";
+console.log(t + " = " + convertTime(t));
+var t = "11:30 AM";
+console.log(t + " = " + convertTime(t));
+var t = "12:00 PM";
+console.log(t + " = " + convertTime(t));
+var t = "12:15 PM";
+console.log(t + " = " + convertTime(t));
+var t = "02:15 PM";
+console.log(t + " = " + convertTime(t));
+var t = "07:15 PM";
+console.log(t + " = " + convertTime(t));
+var t = "02:50 PM";
+console.log(t + " = " + convertTime(t));
+
+</script>

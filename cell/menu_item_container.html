@@ -1,0 +1,92 @@
+<div id="menu_item_container" class="page_container">
+	<div>
+		<li style='background-color:#ddd;'><span class='menu_price'></span><span class='menu_name'></span></li>
+		<div class='menu_photo' style='text-align:center;'></div>
+		<div class='menu_description' style='padding:10px;'></div>
+	</div>
+	<div class='order_summary'>
+		<div style='padding: 10px'>
+			<div class='order_type_name'><span style='width:70px'>Quantity: </span>
+			<span style='font-size:20px; margin-right:20px;'>
+				<select id='menu_qty' style='font-size:16px;'>
+					<option value=1>1</option>
+					<option value=2>2</option>
+					<option value=3>3</option>
+					<option value=4>4</option>
+					<option value=5>5</option>
+				</select>
+			</span>
+			<span class='text_box' id='show_options'></span></div>
+		</div>
+		<div id='option_container'>
+				<div id="side_menu">
+					<div class='left_title'>Rice / Salad</div>
+					<div class='option_elements'>
+						<div class='both'><input type='radio' name='side_name' id='side1' value=0><label for='side1'>Rice and Salad</label></div>
+						<div class='both'><input type='radio' name='side_name' id='side2' value=0><label for='side2'>No Salad, More Rice</label></div>
+						<div class='both'><input type='radio' name='side_name' id='side3' value=0><label for='side3'>No Rice, More Salad</label></div>
+						<div class='rice'><input type='radio' name='side_name' id='side4' value=0><label for='side4'>Rice</label></div>
+						<div class='rice'><input type='radio' name='side_name' id='side5' value=0><label for='side5'>No Rice</label></div>
+						<!--
+						<div class='rice'><input type='radio' name='side_name' id='side6' value=0><label for='side6'>No Rice, More Veggie</label></div>-->
+					</div>
+				</div>
+				<div id="rice_type">
+					<div class='left_title'>Type of Rice</div>
+					<div class='option_elements'>
+						<div><input type='radio' name='rice_type' id='rice1' value=0><label for='rice1'>White Rice</label></div>
+						<div><input type='radio' name='rice_type' id='rice2' value=0.5><label for='rice2'>Brown Rice</label></div>
+					</div>
+				</div>
+				<div id="make_spicy">
+					<div class='left_title'>Make it Spicy</div>
+					<div class='option_elements'>
+						<div><input type='radio' name='make_spicy' id='spicy_n' value=0><label for='spicy_n'>No Spicy</label></div>
+						<div><input type='radio' name='make_spicy' id='spicy_y' value=0.5><label for='spicy_y'>Spicy</label></div>
+					</div>
+				</div>
+				<!--
+				<div id="how_spicy">
+					<div class='left_title'>How Spicy?</div>
+					<div class='option_elements'>
+						<div><input type='radio' name='how_spicy' id='mild' value=0><label for='mild'>Mild Spicy</label></div>
+						<div><input type='radio' name='how_spicy' id='regular' value=0><label for='regular'>Regular Spicy</label></div>
+						<div><input type='radio' name='how_spicy' id='extra' value=0><label for='extra'>Extra Spicy</label></div>
+					</div>
+				</div>
+				-->
+				<div id="white_meat">
+					<div class='left_title'>Substitute with</div>
+					<div class='option_elements'>
+						<div><input type='checkbox' name='white_meat' id='white_meat' value=1.00><label for='white_meat'>Chicken Breast</label>
+						</div>
+					</div>
+				</div>
+				<div id="extra_order">
+					<div class='left_title'>Extra Orders</div>
+					<div class='option_elements'>
+							<div class='extra_yes'><input type='checkbox' name='extra_meat' id='extra_meat'><label for='extra_meat'></label></div>
+							<div class='extra_no'>Not Applicable</div>
+					</div>
+				</div>
+				<div id='special_area'>
+					<div class='left_title'>Special Instructions</div>
+		    		<div class='option_elements'>
+		    			<input id='special_instruction' name='special_instruction' type='text' style='width: 100%; font-size:16px;' value='Write Your Special Instructions…'>
+		   				<span style='font-size:12px; text-align:right;'> * Additional charges may apply.</span>
+		    		</div>
+		    	</div>
+			</table>
+		</div>
+		<hr>
+		<div class='sum_container'>
+			<div class='sum_item'><span class='sum_title'>Subtotal : </span><span id='subtotal' class='sum_data'></span></div>
+			<div class='sum_item'><span class='sum_title'>Tax : </span><span id='tax' class='sum_data'></span></div>
+			<div class='sum_item sum_last_item'><span class='sum_title'>Total : </span><span id='total' class='sum_data'></span></div>
+		</div>
+		<div class='button_container'>
+			<button id='add_order' style='width:150px' class='main'>Buy This</button>
+		</div>
+	</div>
+	
+</div>
