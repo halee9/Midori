@@ -1,0 +1,12 @@
+{
+	"name": "timeclock",
+	"version": "0.0.0",
+	"dependencies": {
+		"bootstrap": "latest",
+		"angular": "latest",
+		"angular-route": "latest",	
+		"angular-bootstrap": "latest",	
+		"fastclick": "latest",
+		"fontawesome": "latest"	
+	}
+}

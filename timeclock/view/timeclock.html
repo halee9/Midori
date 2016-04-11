@@ -1,0 +1,36 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+<div class="numpad">
+	<div>
+		<div class="btn passcode"><span ng-show="keys.length>=1">*</span></div>
+		<div class="btn passcode"><span ng-show="keys.length>=2">*</span></div>
+		<div class="btn passcode"><span ng-show="keys.length>=3">*</span></div>
+		<div class="btn passcode"><span ng-show="keys.length>=4">*</span></div>
+	</div>
+
+	<div ng-hide="worker.punched" class="button-wrapper">
+		<button ng-click="keyin(1)">1</button>
+		<button ng-click="keyin(2)">2</button>
+		<button ng-click="keyin(3)">3</button>
+		<button ng-click="keyin(4)">4</button>
+		<button ng-click="keyin(5)">5</button>
+		<button ng-click="keyin(6)">6</button>
+		<button ng-click="keyin(7)">7</button>
+		<button ng-click="keyin(8)">8</button>
+		<button ng-click="keyin(9)">9</button>
+
+
+		<button ng-click="back()" class="smaller">Back</button>
+		<button ng-click="keyin(0)">0</button>
+		<button ng-click="clear()" class="smaller">Clear</button>
+	</div>
+	<div ng-show="worker.punched">
+		<p class="text-center">Hello, {{worker.name}}!<br><br>
+			You've punched<br>
+			<span style="font-size: 20px">{{worker.state}}</span><br>
+			at {{worker.created_at | date: 'h:mm a'}}<br>
+			{{worker.created_at | date: 'MM/dd/yyyy'}}.<br><br>
+		</p>
+		<button class="btn primary" ng-click="done()">Got it!</button>
+	</div>
+</div>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<title>Time Clock</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+	<!--
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">-->
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css"> 
+	<link rel="stylesheet" href="css/keypad-numeric.css"> <!-- custom styles -->
+
+	<!-- JS -->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="bower_components/fastclick/lib/fastclick.js"></script>
+	
+	<!-- ANGULAR CUSTOM -->
+	<script src="js/app.js"></script>
+
+</head>
+<body ng-app="timeclockApp">
+<div class="container" ng-controller="TimeclockController">
+	
+<div class="row">
+	<div style="width: 300px; margin: 0 auto;">
+		<div class="numpad">
+			<div ng-hide="showinfo || spinner">
+				<div>
+					<div class="btn passcode"><span ng-show="keys.length>=1">*</span></div>
+					<div class="btn passcode"><span ng-show="keys.length>=2">*</span></div>
+					<div class="btn passcode"><span ng-show="keys.length>=3">*</span></div>
+					<div class="btn passcode"><span ng-show="keys.length>=4">*</span></div>
+				</div>
+				<div class="button-wrapper">
+					<button ng-click="keyin(1)">1</button>
+					<button ng-click="keyin(2)">2</button>
+					<button ng-click="keyin(3)">3</button>
+					<button ng-click="keyin(4)">4</button>
+					<button ng-click="keyin(5)">5</button>
+					<button ng-click="keyin(6)">6</button>
+					<button ng-click="keyin(7)">7</button>
+					<button ng-click="keyin(8)">8</button>
+					<button ng-click="keyin(9)">9</button>
+
+
+					<button ng-click="back()" class="smaller">Back</button>
+					<button ng-click="keyin(0)">0</button>
+					<button ng-click="clear()" class="smaller">Clear</button>
+				</div>
+			</div>
+
+			<div ng-show="spinner" style="margin-top: 100px" class="text-center"><i class="fa fa-spinner fa-5x fa-spin"></i></div>
+
+			<div ng-show="showinfo" class="text-center" style="color: white; font-size: 20px;">
+				<div>{{staff.name}}</div>
+				<hr>
+				<p>Last Clock State<br>
+					<span style="font-size: 40px">{{staff.lastClock.type}}</span><br>
+					at {{staff.lastClock.date | date: 'short'}}<br>
+				</p>
+				<hr>
+				<div style="font-size: 60px">{{now | date: 'shortTime'}}</div>
+				<div style="position: absolute; bottom: 20px">
+					<button type="button" class="btn btn-warning btn-lg" ng-click="cancel()">Cancel</button>
+					<button style="width:175px" ng-show="(staff.lastClock.type!='IN')" type="button" class="btn btn-primary btn-lg" ng-click="clock('IN')"><i class="fa fa-sign-in fa-lg"></i> Clock IN</button>
+					<button style="width:175px" ng-show="(staff.lastClock.type=='IN')" type="button" class="btn btn-primary btn-lg" ng-click="clock('OUT')"><i class="fa fa-sign-out fa-lg"></i> Clock OUT</button>
+				</div>
+			</div>
+		</div>
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+	</div>
+</div>
+
+</div>
+</body>
+</html>
