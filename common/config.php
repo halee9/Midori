@@ -1,7 +1,7 @@
 <?php
 	$hostname='localhost';
-	$databasename='midoriapp';
-	$username="adminS6aeENX";
-	$password='kpPIacMr4_MV';
+	$databasename='midori';
+	$username="adminArD4Z23";
+	$password='mQtWfm33iB5P';
 
 ?>
