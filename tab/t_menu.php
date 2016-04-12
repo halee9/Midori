@@ -69,7 +69,7 @@
 					<td class='left_title'>Make it Spicy</td>
 					<td class='option_elements'>
 						<div><input type='radio' name='make_spicy' id='spicy_n' value=0><label for='spicy_n'>No Spicy</label></div>
-						<div><input type='radio' name='make_spicy' id='spicy_y' value='0.50'><label for='spicy_y'>Spicy</label></div>
+						<div><input type='radio' name='make_spicy' id='spicy_y' value=0><label for='spicy_y'>Spicy</label></div>
 					</td>
 				</tr>
 				<!--
