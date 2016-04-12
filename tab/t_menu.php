@@ -49,9 +49,11 @@
 				<tr id="side_menu">
 					<td class='left_title'>Rice / Salad</td>
 					<td class='option_elements'>
+						<!--
 						<div class='both'><input type='radio' name='side_name' id='side1' value=0><label for='side1'>Rice and Salad</label></div>
 						<div class='both'><input type='radio' name='side_name' id='side2' value=0><label for='side2'>No Salad, More Rice</label></div>
 						<div class='both'><input type='radio' name='side_name' id='side3' value=0><label for='side3'>No Rice, More Salad</label></div>
+						-->
 						<div class='rice'><input type='radio' name='side_name' id='side4' value=0><label for='side4'>Rice</label></div>
 						<div class='rice'><input type='radio' name='side_name' id='side5' value=0><label for='side5'>No Rice</label></div>
 						<!--
