@@ -251,7 +251,8 @@ window.onload = function() {
 		// preload image
 		for (var i in G_menu) {
 			if (G_menu[i].pic != '') {
-				var path = "menusmall/" + G_menu[i].pic.replace("t1_","");
+                //var path = "menusmall/" + G_menu[i].pic.replace("t1_","");
+                var path = "menupic/" + G_menu[i].pic;
 				new Image().src = "../common/" + path;
 			}
 		}
@@ -268,3 +269,4 @@ window.onload = function() {
     });
 
 };
+
