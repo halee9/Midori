@@ -1,1 +1,1 @@
-php $OPENSHIFT_REPO_DIR/common/crontest.php
+php $OPENSHIFT_REPO_DIR/common/CronStoreStatus.php
