@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-include '../common/session_check.php'; 
+include '../common/session_check.php';
 ?>
 <html>
 <head>
@@ -14,7 +14,7 @@ include '../common/session_check.php';
 	<!--
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>-->
-    
+
     <script src="../common/jquery/jquery-1.5.min.js"></script>
     <script src="../common/jquery/jquery.effects.core.js"></script>
     <script src="../common/jquery/jquery.effects.transfer.js"></script>
@@ -26,19 +26,6 @@ include '../common/session_check.php';
     <script src="../common/store_common.js?v=<?=$vt?>"></script>
     <link href="t_store.css?v=<?=$vt?>" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35555192-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 
 </head>
 <body>
@@ -59,7 +46,7 @@ include '../common/session_check.php';
 			</div>
 		</div>
 	</div>
-</div>			
+</div>
 <div id="orderlist"></div>
 <div id='main_container'>
 	<div id="left_container">
