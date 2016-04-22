@@ -247,7 +247,8 @@ function init() {
 
 window.onload = function() {
 
-	setTimeout(function() {
+	/*
+    setTimeout(function() {
 		// preload image
 		for (var i in G_menu) {
 			if (G_menu[i].pic != '') {
@@ -257,6 +258,7 @@ window.onload = function() {
 			}
 		}
 	}, 1000);
+*/
 
     $(document).ready(function() {
     	init();

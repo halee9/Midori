@@ -54,7 +54,7 @@
 	margin: 10px;
 }
 </style>
-
+<!--
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -68,6 +68,7 @@
   })();
 
 </script>
+-->
 
 </head>
 <body>
