@@ -14,7 +14,6 @@ $cashier_carrier = "AT&T";
 $con = mysql_connect($hostname,$username,$password);
 mysql_select_db($databasename, $con);
 
-
 $now = date("Y-m-d H:i:s");
 $action = $_POST['action'];
 
@@ -23,7 +22,7 @@ $action_p = $_GET['action'];
 if ($action_p == 'update_status_jsonp') {
     $id = $_GET['id'];
     $status = $_GET['status'];
-    
+
     $sql = "SELECT status FROM Orders WHERE id = $id LIMIT 1";
     $rs = mysql_query($sql) or die ("Error: " .mysql_error());
     while($row = mysql_fetch_array($rs)) {
@@ -39,7 +38,7 @@ if ($action_p == 'update_status_jsonp') {
 
 if ($action == 'get_status') {
     $id = $_POST['order'];
-    
+
     $sql = "SELECT * FROM Orders WHERE id = $id LIMIT 1";
     $rs = mysql_query($sql) or die ("Error: " .mysql_error());
     $order = array();
@@ -53,7 +52,7 @@ if ($action == 'get_status') {
 if ($action == 'update_status') {
     $id = $_POST['id'];
     $status = $_POST['status'];
-    
+
     $sql = "SELECT status FROM Orders WHERE id = $id LIMIT 1";
     $rs = mysql_query($sql) or die ("Error: " .mysql_error());
     while($row = mysql_fetch_array($rs)) {
@@ -62,7 +61,7 @@ if ($action == 'update_status') {
 	    	//update 3/17/2014 for firebase
 	    	if ($status == 'T' && $row[0] == 'P') {
 		    	echo json_encode("auto_transfer");
-		    	
+
 	    	}
 	    	else {
 	    		$action = 'processing';
@@ -84,14 +83,14 @@ if ($action == 'processing') {
 	while($row = mysql_fetch_assoc($rs)){
 		$order[$row['id']] = $row;
 		$order[$row['id']]['items'] = array();
-		
+
 		$order_id = $row['id'];
 		$sql2 = "SELECT * FROM Order_item WHERE order_id = $order_id";
 		$rs2 = mysql_query($sql2) or die ("Error: " .mysql_error());
 		while($row2 = mysql_fetch_assoc($rs2)){
 			$order[$row['id']]['items'][$row2['no']] = $row2;
 			$order[$row['id']]['items'][$row2['no']]['options'] = array();
-			
+
 			$item_no = $row2['no'];
 			$sql3 = "SELECT * FROM Order_item_option WHERE order_id = $order_id AND item_no = $item_no ";
 			$rs3 = mysql_query($sql3) or die ("Error: " .mysql_error());
@@ -115,14 +114,14 @@ if ($action == 'select') {
 	while($row = mysql_fetch_assoc($rs)){
 		$order[$row['id']] = $row;
 		$order[$row['id']]['items'] = array();
-		
+
 		$order_id = $row['id'];
 		$sql2 = "SELECT * FROM Order_item WHERE order_id = $order_id";
 		$rs2 = mysql_query($sql2) or die ("Error: " .mysql_error());
 		while($row2 = mysql_fetch_assoc($rs2)){
 			$order[$row['id']]['items'][$row2['no']] = $row2;
 			$order[$row['id']]['items'][$row2['no']]['options'] = array();
-			
+
 			$item_no = $row2['no'];
 			$sql3 = "SELECT * FROM Order_item_option WHERE order_id = $order_id AND item_no = $item_no ";
 			$rs3 = mysql_query($sql3) or die ("Error: " .mysql_error());
@@ -142,13 +141,13 @@ if ($action == 'selectone') {
 	while($row = mysql_fetch_assoc($rs)){
 		$order = $row;
 		$order['items'] = array();
-		
+
 		$sql2 = "SELECT * FROM Order_item WHERE order_id = $order_id";
 		$rs2 = mysql_query($sql2) or die ("Error: " .mysql_error());
 		while($row2 = mysql_fetch_assoc($rs2)){
 			$order['items'][$row2['no']] = $row2;
 			$order['items'][$row2['no']]['options'] = array();
-			
+
 			$item_no = $row2['no'];
 			$sql3 = "SELECT * FROM Order_item_option WHERE order_id = $order_id AND item_no = $item_no ";
 			$rs3 = mysql_query($sql3) or die ("Error: " .mysql_error());
@@ -170,13 +169,13 @@ if ($action == 'select_usual') {
 		$order = $row;
 		$order_id = $row['id'];
 		$order['items'] = array();
-		
+
 		$sql2 = "SELECT * FROM Order_item WHERE order_id = $order_id";
 		$rs2 = mysql_query($sql2) or die ("Error: " .mysql_error());
 		while($row2 = mysql_fetch_assoc($rs2)){
 			$order['items'][$row2['no']] = $row2;
 			$order['items'][$row2['no']]['options'] = array();
-			
+
 			$item_no = $row2['no'];
 			$sql3 = "SELECT * FROM Order_item_option WHERE order_id = $order_id AND item_no = $item_no ";
 			$rs3 = mysql_query($sql3) or die ("Error: " .mysql_error());
@@ -190,11 +189,11 @@ if ($action == 'select_usual') {
 
 if ($action == 'placeorder') {
 	echo "var code = 0;";
-	
+
 	$order = json_decode(stripslashes(@$_POST['order']),true);
-	//var_dump($order);	
-	
-	
+	//var_dump($order);
+
+
 	$subtotal = $order['subtotal'];
 	$tax = $order['tax'];
 	$total = $order['total'];
@@ -206,23 +205,23 @@ if ($action == 'placeorder') {
 	$store = (int) $order['store'];
 	$order_type = $order['order_type'];
 	$payment_type = $order['payment_type'];
-	
+
 	$text_me = $order['text_me'];
 	$email_me = $order['email_me'];
 	$cal_point = round($total * $point_rate);
-	if ($payment_type == "S") { 
-		$point = $cal_point; 
+	if ($payment_type == "S") {
+		$point = $cal_point;
 		// No more point system 01/09/2014
-		$point = 0; 
+		$point = 0;
 	}
-	else { 
-		$point = (0 - ($total*100)); 
+	else {
+		$point = (0 - ($total*100));
 		$payment_type = "P";
 	}
 	//echo "var point = " . $point . ";";
 	$usual = $order['usual'];
 	$from_where = $order['from_where'];
-	
+
 	$sql = "SELECT * FROM User WHERE id = $user LIMIT 1";
 	$rs1 = mysql_query($sql) or die ("Error: " .mysql_error());
 	$row1 = mysql_fetch_assoc($rs1);
@@ -232,14 +231,14 @@ if ($action == 'placeorder') {
 	$cust_email = $row1['email'];
 
 	$msg = array();
-	
+
 	/*
 	$expire=time()+60*60*24*365;
 	setcookie("cust_name", $cust_name, $expire);
 	setcookie("cust_phone", $cust_phone, $expire);
 	 * */
 	//setcookie("prev_order", $order, $expire);
-	
+
 	$today = date("Y-m-d");
 	$sql = "SELECT daily_no FROM Orders WHERE store = $store AND dateCreated = '$today' ORDER BY id DESC LIMIT 1";
 	$rs = mysql_query($sql) or die ("Error: " .mysql_error());
@@ -251,27 +250,27 @@ if ($action == 'placeorder') {
 			$daily_no = 1;
 	}
 	//$cust_carrier = "AT&T";
-	
+
 	$sql = "INSERT INTO Orders VALUES ( 0, $daily_no, $subtotal, $tax, $total, '$cust_name', '$cust_phone', '$cust_carrier', '$cust_pickup_time', '$cust_email', $user, '$now', 'P', $store, '$order_type', '$text_me', '$email_me', $point, '$now', NULL,NULL,NULL,NULL, '$usual', '$payment_type', '$from_where' )";
-	
+
 	//echo "sql=". $sql . "=end";
-	
+
 	mysql_query($sql) or die ("Error: " .mysql_error());
-	
+
 	$order_id = mysql_insert_id();
-	
+
 	$items = $order['items'];
-	
+
 	$i=0;
 	foreach ($items as $item) {
 		$menu_id = $item['menu_id'];
-		
+
 		$sql = "SELECT * FROM N_Menu WHERE id = $menu_id LIMIT 1";
 		$rs1 = mysql_query($sql) or die ("Error: " .mysql_error());
 		$row1 = mysql_fetch_assoc($rs1);
 		$abbr = $row1["abbr_name"];
 		$job = $row1["job"];
-		
+
 		$name = addslashes($item['menu_name']);
 		$count = $item['qty'];
 		$price = $item['subtotal'];
@@ -280,18 +279,18 @@ if ($action == 'placeorder') {
 		if (@$item['special_instruction']) {
 			$special_instruction = addslashes($item['special_instruction']);
 		}
-		
+
 		$sql = "INSERT INTO Order_item VALUES ( $order_id, $i+1, $menu_id, '$name', $count, $price, '$special_instruction', '$abbr', '$job' )";
 		mysql_query($sql) or die ("Error: " .mysql_error());
 		$msg[] = $count . " " . $name;
-		
+
 		$option = $item['option'];
 		for ($j=0; $j < count($option); $j++) {
 			$option_id = $option[$j]['id'];
 			$option_abbr= $option[$j]['abbr'];
 			$option_name= $option[$j]['name'];
 			$option_price= $option[$j]['price'];
-			
+
 			$sql = "INSERT INTO Order_item_option VALUES ( $order_id, $i+1, $j+1, $option_id, '$option_abbr', '$option_name', $option_price )";
 			mysql_query($sql) or die ("Error: " .mysql_error());
 		}
@@ -304,10 +303,10 @@ if ($action == 'placeorder') {
 		@session_start();
 		$_SESSION['point_usable'] = $p->getPointsUsable();
 	}
-	
+
 	echo "var code = 1;";
 	echo "var order_id = " . $order_id . ";";
-	
+
 	$sql = "SELECT cashier_phone, cashier_carrier, cashier_text FROM Store WHERE id = $store LIMIT 1";
 	$rs = mysql_query($sql) or die ("Error: " .mysql_error());
 	while($row = mysql_fetch_array($rs)) {
@@ -318,9 +317,9 @@ if ($action == 'placeorder') {
 			Cell::send($cashier_phone, $cashier_carrier,'You got '.$cell_msg.".");
 		}
 	}
-	
+
 	//set_Firebase($order);
-	
+
 
 }
 /*
@@ -328,15 +327,15 @@ function set_Firebase($order) {
 	const DEFAULT_URL = 'https://halee.firebaseio.com/';
 	const DEFAULT_TOKEN = 'JMhEG8CGeGKh1VWB731evuteverSQwkJQCRGwQOe';
 	const DEFAULT_ORDER_PATH = '/orders';
-	
+
 	$firebase = new Firebase(DEFAULT_URL, DEFAULT_TOKEN);
-	
+
 	$todoMilk = array(
 		'name' => 'Pick the milk',
 		'priority' => 1
 	);
-	
-	
+
+
 	$firebase->set(DEFAULT_ORDER_PATH, $todoMilk);
 
 }
@@ -346,51 +345,51 @@ function send_mail($email, $message) {
 
 	try {
 		$mail = new PHPMailer(true); //New instance, with exceptions enabled
-	
+
 		//$body             = file_get_contents('contents.html');
 		//$body             = preg_replace('/\\\\/','', $body); //Strip backslashes
 		$body = $message;
 		//$body = "Test Test";
-	
+
 		$mail->IsSMTP();                           // tell the class to use SMTP
 		$mail->SMTPAuth   = true;                  // enable SMTP authentication
 		$mail->Port       = 26;                    // set the SMTP server port
 		$mail->Host       = "mail.teriyakionline.com"; // SMTP server
 		//$mail->Username   = "admin@teriyakionline.com";     // SMTP server username
 		//$mail->Password   = "coven1313";            // SMTP server password
-	
+
 		$mail->IsSendmail();  // tell the class to use Sendmail
-	
+
 		$mail->AddReplyTo("admin@teriyakionline.com","Teriyaki Online");
-	
+
 		$mail->From       = "admin@teriyakionline.com";
 		$mail->FromName   = "Teriyaki Online";
-	
+
 		$to = $email;
-	
+
 		$mail->AddAddress($to);
-	
+
 		$mail->Subject  = $message;
-	
+
 		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 		$mail->WordWrap   = 80; // set word wrap
-	
+
 		$mail->MsgHTML($body);
-	
+
 		$mail->IsHTML(true); // send as HTML
-	
+
 		$mail->Send();
 		//echo 'Message has been sent.';
-	} 
-	
+	}
+
 	catch (phpmailerException $e) {
 		//echo $e->errorMessage();
 	}
-	
+
 }
 
 function update_order_status($id, $status) {
-    
+
     $now = date("Y-m-d H:i:s");
     if ($status == "T") {
 	    $sql = "UPDATE Orders SET  status = '$status', time_second = '$now' WHERE id = $id ";
@@ -408,7 +407,7 @@ function update_order_status($id, $status) {
 	    $sql = "UPDATE Orders SET  status = '$status' WHERE id = $id ";
     }
     mysql_query($sql) or die ("Error: " .mysql_error());
-    
+
     /* No more point system 01/09/2014
     if ($status == "D") {
 	    $sql2 = "SELECT user, store FROM Orders WHERE id = $id LIMIT 1";
@@ -421,7 +420,7 @@ function update_order_status($id, $status) {
 		}
     }
     */
-    
+
     if ($status == "T" || $status == "R") {
 		$sql = "SELECT * FROM Orders WHERE id = $id ";
 		$rs = mysql_query($sql) or die ("Error: " .mysql_error());
