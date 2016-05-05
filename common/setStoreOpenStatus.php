@@ -20,8 +20,6 @@ function setStoreOpenStatus($store_id) {
 		$open_status = "Y";
 	}
 	else {
-		echo "date: ".date("H:i:s").".";
-
 		$biz_days = explode(",",$business_days);
 		$dw = date("w");
 		if (in_array($dw,$biz_days)) {
