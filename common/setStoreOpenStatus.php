@@ -20,6 +20,8 @@ function setStoreOpenStatus($store_id) {
 		$open_status = "Y";
 	}
 	else {
+		echo "date: ".date("H:i:s").".";
+
 		$biz_days = explode(",",$business_days);
 		$dw = date("w");
 		if (in_array($dw,$biz_days)) {
@@ -35,6 +37,7 @@ function setStoreOpenStatus($store_id) {
 			$open_status = "N";
 		}
 	}
+
 
 	$sql = "UPDATE Store SET open_status = '$open_status' WHERE id = $store_id";
 	mysql_query($sql) or die ("Query failed - ".$sql);
