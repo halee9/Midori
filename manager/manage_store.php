@@ -3,13 +3,6 @@
 <?php include 'manager_header.php' ?>
 
 <div id='main_container'>
-	<div class="group_name radius_top">Select Today's Special</div>
-	<div class="group_body radius_bottom">
-		<div id="specials">
-		</div>
-		<div><button id="special_submit">Update</button></div>
-		<div id="special_updated_msg"></div>
-	</div>
 	<div class="group_name radius_top">Store Open Hours</div>
 	<div class="group_body radius_bottom">
 		<div id="forsed_closed">
@@ -33,6 +26,13 @@
 		</div>
 		<div><button id="cashier_submit">Update</button></div>
 		<div id="cashier_msg"></div>
+	</div>
+	<div class="group_name radius_top">Active Menu</div>
+	<div class="group_body radius_bottom">
+		<div id="specials">
+		</div>
+		<div><button id="special_submit">Update</button></div>
+		<div id="special_updated_msg"></div>
 	</div>
 </div>
 
