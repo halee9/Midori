@@ -9,7 +9,9 @@ $store_id = 1;
 $action = @$_POST['action'];
 
 if ($action == 'get_specials') {
-	$q = "SELECT * FROM N_Menu WHERE store = $store_id AND ( id > 70 AND id < 80 )";
+	//$q = "SELECT * FROM N_Menu WHERE store = $store_id AND ( id > 70 AND id < 80 )";
+	// Get all menus -- update 6/29/16
+	$q = "SELECT * FROM N_Menu WHERE store = $store_id";
 	$res = mysql_query($q) or die ("Error: " . mysql_error());
 	$menu = array();
 	while($row = mysql_fetch_assoc($res)){
@@ -19,17 +21,19 @@ if ($action == 'get_specials') {
 }
 
 if ($action == 'set_specials') {
-	
+
 	$ids = explode(",",@$_POST['ids']);
-	$q = "UPDATE N_Menu SET soldout = 'Y' WHERE id > 70 AND id < 80";
+	//$q = "UPDATE N_Menu SET soldout = 'Y' WHERE id > 70 AND id < 80";
+	// Set all menus -- update 6/29/16
+	$q = "UPDATE N_Menu SET soldout = 'Y'";
 	$res = mysql_query($q) or die ("Error: " . mysql_error());
 	foreach ($ids as $id) {
 		$q = "UPDATE N_Menu SET soldout = 'N' WHERE id = $id";
 		$res = mysql_query($q) or die ("Error: " . mysql_error());
 	}
-	
+
 	include "getStoreMenu.php";
-	
+
 }
 
 
