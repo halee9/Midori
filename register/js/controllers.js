@@ -32,20 +32,7 @@ angular.module('myApp.controllers', [])
 	if (typeof jsPrintSetup !== 'undefined') {
 		jsPrintSetup.setPrinter('EPSON TM-T20');
 		jsPrintSetup.setSilentPrint(true);
-
-		jsPrintSetup.setOption('orientation', jsPrintSetup.kPortraitOrientation);
-		jsPrintSetup.setOption('marginTop', 0);
-		jsPrintSetup.setOption('marginBottom', 0);
-		jsPrintSetup.setOption('marginLeft', 0);
-		jsPrintSetup.setOption('marginRight', 0);
-		// set empty page footer
-		jsPrintSetup.setOption('footerStrLeft', '');
-		jsPrintSetup.setOption('footerStrCenter', '');
-		jsPrintSetup.setOption('footerStrRight', '');
-		// set page header
-		jsPrintSetup.setOption('headerStrLeft', '');
-		jsPrintSetup.setOption('headerStrCenter', '');
-		jsPrintSetup.setOption('headerStrRight', '');
+	}
 
 	var now = new Date();
 	$scope.orders.$on("child_added", function(snapshot){
