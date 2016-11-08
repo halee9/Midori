@@ -12,7 +12,7 @@ angular.module('myApp.controllers', [])
 	$scope.order_printing = {};
 	if (typeof jsPrintSetup !== 'undefined') {
 		jsPrintSetup.setPrinter('Star TSP143LAN');
-		jsPrintSetup.setSilentPrint(false);
+		jsPrintSetup.setSilentPrint(true);
 	}
 	Receipt.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
