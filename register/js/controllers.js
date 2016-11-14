@@ -10,16 +10,17 @@ angular.module('myApp.controllers', [])
 
 .controller('ReceiptPrintingCtrl', ['$scope', 'Receipt', '$window', function($scope, Receipt, $window) {
 	$scope.order_printing = {};
-	if (typeof jsPrintSetup !== 'undefined') {
-		jsPrintSetup.setPrinter('Star TSP143LAN');
-		jsPrintSetup.setSilentPrint(true);
-	}
 	Receipt.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
 		console.log("Receipt Printing..", order);
 		$scope.order_printing = order;
 		setTimeout(function(){
 			//window.print();
+			if (typeof jsPrintSetup !== 'undefined') {
+				jsPrintSetup.setPrinter('Star TSP143LAN');
+				jsPrintSetup.setSilentPrint(true);
+				//jsPrintSetup.setOption('printSilent', 1);
+			}
 			jsPrintSetup.print();
 			//$window.location.reload();
 		}, 100);
