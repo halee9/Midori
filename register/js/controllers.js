@@ -16,6 +16,7 @@ angular.module('myApp.controllers', [])
 	}
 	Receipt.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
+		console.log("Receipt Printing..", order);
 		$scope.order_printing = order;
 		setTimeout(function(){
 			//window.print();
