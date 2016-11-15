@@ -16,6 +16,7 @@ angular.module('myApp.controllers', [])
 		$scope.order_printing = order;
 		setTimeout(function(){
 			window.print();
+			
 			// if (typeof jsPrintSetup !== 'undefined') {
 			// 	jsPrintSetup.setPrinter('Star TSP143LAN');
 			// 	jsPrintSetup.setSilentPrint(true);
