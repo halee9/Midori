@@ -15,13 +15,13 @@ angular.module('myApp.controllers', [])
 		console.log("Receipt Printing..", order);
 		$scope.order_printing = order;
 		setTimeout(function(){
-			//window.print();
+			window.print();
 			if (typeof jsPrintSetup !== 'undefined') {
 				jsPrintSetup.setPrinter('Star TSP143LAN');
 				jsPrintSetup.setSilentPrint(true);
 				//jsPrintSetup.setOption('printSilent', 1);
 			}
-			jsPrintSetup.print();
+			//jsPrintSetup.print();
 			//$window.location.reload();
 		}, 100);
 	});
