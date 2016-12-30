@@ -16,7 +16,7 @@ angular.module('myApp.controllers', [])
 		$scope.order_printing = order;
 		setTimeout(function(){
 			window.print();
-			
+
 			// if (typeof jsPrintSetup !== 'undefined') {
 			// 	jsPrintSetup.setPrinter('Star TSP143LAN');
 			// 	jsPrintSetup.setSilentPrint(true);
@@ -32,10 +32,10 @@ angular.module('myApp.controllers', [])
 	var queue = [];
 	$scope.orders = Orders;
 	$scope.order_printing = {};
-	if (typeof jsPrintSetup !== 'undefined') {
-		jsPrintSetup.setPrinter('EPSON TM-T20');
-		jsPrintSetup.setSilentPrint(true);
-	}
+	// if (typeof jsPrintSetup !== 'undefined') {
+	// 	jsPrintSetup.setPrinter('EPSON TM-T20');
+	// 	jsPrintSetup.setSilentPrint(true);
+	// }
 
 	var now = new Date();
 	$scope.orders.$on("child_added", function(snapshot){
@@ -47,8 +47,8 @@ angular.module('myApp.controllers', [])
 			queue.push(q);
 			$scope.order_printing = order;
 			setTimeout(function(){
-				//window.print();
-				jsPrintSetup.print();
+				window.print();
+				// jsPrintSetup.print();
 			}, 100);
 		}
 	});
