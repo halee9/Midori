@@ -29,7 +29,7 @@ angular.module('myApp.controllers', [])
 }])
 
 .controller('PrintingCtrl', ['$scope', 'Orders', function($scope, Orders) {
-	var queue = [];
+	// var queue = [];
 	$scope.orders = Orders;
 	$scope.order_printing = {};
 	// if (typeof jsPrintSetup !== 'undefined') {
@@ -43,8 +43,8 @@ angular.module('myApp.controllers', [])
 		var rec = new Date(order.created_at);
 		console.log(now-rec);
 		if ((now-rec) < 0 && order.htType == 'Togo') {
-			var q = angular.copy(order);
-			queue.push(q);
+			// var q = angular.copy(order);
+			// queue.push(q);
 			$scope.order_printing = order;
 			setTimeout(function(){
 				window.print();
