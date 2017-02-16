@@ -32,11 +32,11 @@ angular.module('myApp.filters', []).
 		if (typeof(str) === 'undefined') return '';
 		//console.log(str);
 		// if (str == 'A') return 'O';
-		// else 
+		// else
     if (str == 'B') return ':';
 		else if (str == 'C') return '.';
 		else if (str == 'D') return ':';
-		else return ' ';
+		else return '';
 	}
 })
 
