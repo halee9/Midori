@@ -26,8 +26,7 @@
 			<span class="small-panel"
 				ng-click="itemDone(item)"
 				ng-class="{bg_blue: (order.htType=='Togo'), bg_red: (order.htType!='Togo')}">
-				{{order.htType | firstOne}}
-				{{item.rice | riceSymbol}}
+				{{order.htType | firstOne}}{{item.rice}}
 			</span>
 			<span ng-show="item.qty-1" class="small-panel bg-blue">{{ item.qty }}</span>
 			<span>{{ item.abbr }}</span>
