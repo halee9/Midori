@@ -31,8 +31,9 @@ angular.module('myApp.filters', []).
 	return function(str) {
 		if (typeof(str) === 'undefined') return '';
 		//console.log(str);
-		if (str == 'A') return 'O';
-		else if (str == 'B') return ':';
+		// if (str == 'A') return 'O';
+		// else 
+    if (str == 'B') return ':';
 		else if (str == 'C') return '.';
 		else if (str == 'D') return ':';
 		else return ' ';

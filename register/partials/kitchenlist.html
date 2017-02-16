@@ -22,8 +22,12 @@
 	<div>
 		<div ng-repeat="item in order.items" ng-hide="item.noDisplay" ng-class="{bg_light_green: (item.job=='Grill'), bg_light_red: (item.job=='Wok'), grey: (order.state=='Done'), smaller: item.done}">
 			<span ng-show="order.state=='Arrived'" class="glyphicon glyphicon-user red"></span>
-			<span class="small-panel" ng-click="itemDone(item)" ng-class="{bg_blue: (order.htType=='Togo'), bg_red: (order.htType!='Togo')}">{{order.htType | firstOne}}</span>
-			<!-- delete {{ item.rice | riceSymbol }} upperline 3/18/16 -->
+			<!-- put it back {{ item.rice | riceSymbol }} upperline 2/15/17 -->
+			<span class="small-panel"
+				ng-click="itemDone(item)"
+				ng-class="{bg_blue: (order.htType=='Togo'), bg_red: (order.htType!='Togo')}">
+				{{order.htType | firstOne}}{{ item.rice | riceSymbol }}
+			</span>
 			<span ng-show="item.qty-1" class="small-panel bg-blue">{{ item.qty }}</span>
 			<span>{{ item.abbr }}</span>
 			<div class="smallfont" ng-class="{grey: (order.state=='Done')}" style="line-height:120%;">{{item | optionsToString2}}</div>
