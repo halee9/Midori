@@ -17,7 +17,7 @@ angular.module('myApp.controllers', [])
 		var order = snapshot.snapshot.value;
 		var rec = new Date(order.created_at);
 		if ((now-rec) < 0 && order.htType == 'Togo') {
-			console.log("Printing ticket from Order::::", order);
+			// console.log("Printing ticket from Order::::", order);
 			Ticket.$remove().then(function(){
 				//Receipt.$value = $scope.order_printing;
 				Ticket.$add(order).then(function(){
@@ -509,7 +509,7 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.print_ticket = function(order) {
-		console.log("Printing ticket::::", order);
+		// console.log("Printing ticket::::", order);
 		Ticket.$remove().then(function(){
 			//Receipt.$value = $scope.order_printing;
 			Ticket.$add(order).then(function(){
