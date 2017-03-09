@@ -34,9 +34,9 @@ angular.module('myApp.controllers', [])
 		$scope.order_printing = order;
 		setTimeout(function(){
 			window.print();
-			Ticket.$remove(order).then(function(){
-				console.log("Removed: ", order);
-			})
+			// Ticket.$remove(order).then(function(){
+			// 	console.log("Removed: ", order);
+			// })
 		}, 0);
 	});
 }])
