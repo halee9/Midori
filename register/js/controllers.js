@@ -490,6 +490,7 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.print_ticket = function(order) {
+		console.log("Printing ticket::::", order);
 		Ticket.$remove().then(function(){
 			//Receipt.$value = $scope.order_printing;
 			Ticket.$add(order).then(function(){
