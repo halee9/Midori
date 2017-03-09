@@ -29,7 +29,9 @@
 				{{order.htType | firstOne}}
 			</span>
 			<span ng-show="item.qty-1" class="small-panel bg-blue">{{ item.qty }}</span>
-			<span>{{ item.abbr }}</span>
+			<!-- new printing option when double click at the name 3/8/2017-->
+			<span ng-dblclick="print()">{{ item.abbr }}</span>
+			<!--<span>{{ item.abbr }}</span>-->
 			<div class="smallfont" ng-class="{grey: (order.state=='Done')}" style="line-height:120%;">{{item | optionsToString2}}</div>
 		</div>
 	</div>

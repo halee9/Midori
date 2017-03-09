@@ -38,6 +38,9 @@ angular.module('myApp.services', []).
 .factory('Receipt', ['$firebase', 'fbURL', function($firebase, fbURL) {
   return $firebase(new Firebase(fbURL+'register/receipt/'));
 }])
+.factory('Ticket', ['$firebase', 'fbURL', function($firebase, fbURL) {
+  return $firebase(new Firebase(fbURL+'register/ticket/'));
+}])
 .factory('Earning', ['$firebase', 'fbURL', function($firebase, fbURL) {
   return $firebase(new Firebase(fbURL+'register/earning/'));
 }])

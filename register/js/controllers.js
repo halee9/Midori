@@ -8,6 +8,18 @@ angular.module('myApp.controllers', [])
 
 }])
 
+.controller('TicketPrintingCtrl', ['$scope', 'Ticket', '$window', function($scope, Ticket, $window) {
+	$scope.order_printing = {};
+	Ticket.$on("child_added", function(snapshot){
+		var order = snapshot.snapshot.value;
+		// console.log("Receipt Printing..", order);
+		$scope.order_printing = order;
+		setTimeout(function(){
+			window.print();
+		}, 0);
+	});
+}])
+
 .controller('ReceiptPrintingCtrl', ['$scope', 'Receipt', '$window', function($scope, Receipt, $window) {
 	$scope.order_printing = {};
 	Receipt.$on("child_added", function(snapshot){
@@ -41,7 +53,7 @@ angular.module('myApp.controllers', [])
 	$scope.orders.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
 		var rec = new Date(order.created_at);
-		console.log(now-rec);
+		//console.log(now-rec);
 		if ((now-rec) < 0 && order.htType == 'Togo') {
 			// var q = angular.copy(order);
 			// queue.push(q);
@@ -52,18 +64,6 @@ angular.module('myApp.controllers', [])
 			}, 0);
 		}
 	});
-/*
-	setInterval(function(){
-		if (queue.length > 0) {
-			console.log("q="+queue.length);
-			$scope.order_printing = queue[0];
-			setTimeout(function(){
-				window.print();
-				queue.splice(0,1);
-			}, 500);
-		}
-	}, 1000);
-*/
 }])
 
 .controller('PayrollsCtrl', ['$scope', 'Payrolls', 'Timesheets', '$filter', function($scope, Payrolls, Timesheets, $filter) {
@@ -363,7 +363,8 @@ angular.module('myApp.controllers', [])
 
 }])
 
-.controller('KitchenCtrl', ['$scope', 'Orders', 'Icons', 'Types', 'CustomerDisplay', '$interval', '$http', function($scope, Orders, Icons, Types, CustomerDisplay, $interval, $http) {
+.controller('KitchenCtrl', ['$scope', 'Orders', 'Icons', 'Types', 'CustomerDisplay', '$interval', '$http', 'Ticket',
+	function($scope, Orders, Icons, Types, CustomerDisplay, $interval, $http, Ticket) {
 	$scope.orders = Orders;
 	$scope.icons = Icons;
 	$scope.types = Types;
@@ -374,8 +375,13 @@ angular.module('myApp.controllers', [])
 	$scope.cash_total = "";
 	$scope.credit_total = "";
 
+	var now = new Date();
 	$scope.orders.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
+		var rec = new Date(order.created_at);
+		if ((now-rec) < 0 && order.htType == 'Togo') {
+			$scope.print_ticket(order)
+		}
 		/*
 		console.log(order);
 		if (order.items) {
@@ -480,6 +486,15 @@ angular.module('myApp.controllers', [])
 			//console.log(data);
 		    // do something with the returned JavaScript object
 		    // ( in the "data" parameter ).
+		});
+	}
+
+	$scope.print_ticket = function(order) {
+		Ticket.$remove().then(function(){
+			//Receipt.$value = $scope.order_printing;
+			Ticket.$add(order).then(function(){
+				//$window.location.reload();
+			});
 		});
 	}
 

@@ -70,6 +70,11 @@ var myApp = angular.module('myApp', [
 			controller: 'PrintingCtrl'
 		});
 	$routeProvider
+		.when('/ticketPrinting', {
+			templateUrl: 'partials/printing.html',
+			controller: 'TicketPrintingCtrl'
+		});
+	$routeProvider
 		.when('/receiptPrinting', {
 			templateUrl: 'partials/newOrderTicket.html',
 			controller: 'ReceiptPrintingCtrl'
@@ -119,5 +124,3 @@ var myApp = angular.module('myApp', [
 			redirectTo: '/'
 		});
 }]);
-
-
