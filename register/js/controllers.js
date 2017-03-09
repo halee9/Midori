@@ -28,11 +28,13 @@ angular.module('myApp.controllers', [])
 
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
+		let key = snapshot.snapshot.name;
 		var order = snapshot.snapshot.value;
 		console.log("Receipt Printing..", snapshot.snapshot);
 		$scope.order_printing = order;
 		setTimeout(function(){
 			window.print();
+			Ticket.child(key).remove();
 		}, 0);
 	});
 }])
