@@ -24,7 +24,7 @@ angular.module('myApp.controllers', [])
 			// }
 			// //jsPrintSetup.print();
 			// //$window.location.reload();
-		}, 100);
+		}, 0);
 	});
 }])
 
@@ -49,7 +49,7 @@ angular.module('myApp.controllers', [])
 			setTimeout(function(){
 				window.print();
 				// jsPrintSetup.print();
-			}, 100);
+			}, 0);
 		}
 	});
 /*
@@ -425,43 +425,43 @@ angular.module('myApp.controllers', [])
 		}
 	});
 
-	$interval(function () {
-		var pre_total = 0;
-		var total = 0;
-		var cash_total = 0;
-		var credit_total = 0;
-		var keys = $scope.orders.$getIndex();
-		var now = new Date();
-		keys.forEach(function(key) {
-			var t = new Date($scope.orders[key].created_at);
-			if (typeof $scope.orders[key].state !== "Undefined" && $scope.orders[key].state !== "Done") {
-				var diff = Math.floor((now - t) / 1000 / 60);
-				$scope.orders[key].diff = diff;
-			}
-			if ($scope.orders[key].status == "Refunded" || $scope.orders[key].status == "Removed") {
-			}
-			else {
-				//console.log(now.toJSON().substr(0,10)+":"+t.toJSON().substr(0,10));
-				if (now.toLocaleDateString() == t.toLocaleDateString()) {
-					pre_total += parseFloat($scope.orders[key].total);
-					if ($scope.orders[key].paymentType != "Unpaid") {
-						total += parseFloat($scope.orders[key].total);
-						if ($scope.orders[key].paymentType == "Credit") credit_total += parseFloat($scope.orders[key].total);
-						else cash_total += parseFloat($scope.orders[key].total);
-					}
-				}
-			}
-		});
-		$scope.pre_total = pre_total;
-		$scope.total = total;
-		$scope.cash_total = cash_total;
-		$scope.credit_total = credit_total;
-
-	}, 10000);
-
-	$interval(function() {
-		$scope.clock = new Date();
-	}, 1000);
+	// $interval(function () {
+	// 	var pre_total = 0;
+	// 	var total = 0;
+	// 	var cash_total = 0;
+	// 	var credit_total = 0;
+	// 	var keys = $scope.orders.$getIndex();
+	// 	var now = new Date();
+	// 	keys.forEach(function(key) {
+	// 		var t = new Date($scope.orders[key].created_at);
+	// 		if (typeof $scope.orders[key].state !== "Undefined" && $scope.orders[key].state !== "Done") {
+	// 			var diff = Math.floor((now - t) / 1000 / 60);
+	// 			$scope.orders[key].diff = diff;
+	// 		}
+	// 		if ($scope.orders[key].status == "Refunded" || $scope.orders[key].status == "Removed") {
+	// 		}
+	// 		else {
+	// 			//console.log(now.toJSON().substr(0,10)+":"+t.toJSON().substr(0,10));
+	// 			if (now.toLocaleDateString() == t.toLocaleDateString()) {
+	// 				pre_total += parseFloat($scope.orders[key].total);
+	// 				if ($scope.orders[key].paymentType != "Unpaid") {
+	// 					total += parseFloat($scope.orders[key].total);
+	// 					if ($scope.orders[key].paymentType == "Credit") credit_total += parseFloat($scope.orders[key].total);
+	// 					else cash_total += parseFloat($scope.orders[key].total);
+	// 				}
+	// 			}
+	// 		}
+	// 	});
+	// 	$scope.pre_total = pre_total;
+	// 	$scope.total = total;
+	// 	$scope.cash_total = cash_total;
+	// 	$scope.credit_total = credit_total;
+	//
+	// }, 10000);
+	//
+	// $interval(function() {
+	// 	$scope.clock = new Date();
+	// }, 1000);
 
 	function onlineOrderStateUpdate(order, state) {
 		//console.log(order.onlineId);
