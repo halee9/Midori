@@ -30,15 +30,15 @@
   </ul>
   <ul id="orderlist" class="col-sm-4 list-group" style="font-size: 350%; font-weight: bold;">
     <li ng-repeat="order in orders | orderByPriority | orderBy:'created_at'" ng-if="order.orderType!='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived') && (!order.reserved_time || order.reserved_time=='') && order.htType=='Togo'" style="border-bottom: 3px solid #333; padding: 5px">
-      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+      <kitchenlist order="order" types="types" done="kitchen_done(order)" print="print_ticket(order)"></kitchenlist>
     </li>
   </ul>
   <ul id="orderlist" class="col-sm-4 list-group" style="font-size: 350%; font-weight: bold;">
     <li ng-repeat="order in orders | orderByPriority | orderBy:'reserved_time'" ng-if="order.orderType!='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived') && (order.reserved_time && order.htType=='Togo')" style="border-bottom: 3px solid #333; padding: 5px">
-      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+      <kitchenlist order="order" types="types" done="kitchen_done(order)" print="print_ticket(order)"></kitchenlist>
     </li>
     <li ng-repeat="order in orders | orderByPriority | orderBy:'created_at'" ng-if="order.orderType!='In-person' && (order.state=='Place' || order.state=='Taken' || order.state=='Arrived') && (order.htType!='Togo')" style="border-bottom: 3px solid #333; padding: 5px">
-      <kitchenlist order="order" types="types" done="kitchen_done(order)"></kitchenlist>
+      <kitchenlist order="order" types="types" done="kitchen_done(order)" print="print_ticket(order)"></kitchenlist>
     </li>
   </ul>
 	<div id="orderlist" class="popup_right" style="font-size: 200%; font-weight: bold;" ng-if="list_on">

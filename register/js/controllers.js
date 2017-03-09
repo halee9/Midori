@@ -380,6 +380,7 @@ angular.module('myApp.controllers', [])
 		var order = snapshot.snapshot.value;
 		var rec = new Date(order.created_at);
 		if ((now-rec) < 0 && order.htType == 'Togo') {
+			console.log("pprintting_tikettt", order);
 			$scope.print_ticket(order)
 		}
 		/*
