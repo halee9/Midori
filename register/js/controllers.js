@@ -18,12 +18,12 @@ angular.module('myApp.controllers', [])
 		var rec = new Date(order.created_at);
 		if ((now-rec) < 0 && order.htType == 'Togo') {
 			// console.log("Printing ticket from Order::::", order);
-			Ticket.$remove().then(function(){
+			// Ticket.$remove().then(function(){
 				//Receipt.$value = $scope.order_printing;
 				Ticket.$add(order).then(function(){
 					//$window.location.reload();
 				});
-			});
+			// });
 		}
 	});
 
@@ -34,6 +34,9 @@ angular.module('myApp.controllers', [])
 		$scope.order_printing = order;
 		setTimeout(function(){
 			window.print();
+			Ticket.$remove(order).then(function(){
+				console.log("Removed: ", order);
+			})
 		}, 0);
 	});
 }])
