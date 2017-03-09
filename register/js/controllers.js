@@ -18,25 +18,21 @@ angular.module('myApp.controllers', [])
 		var rec = new Date(order.created_at);
 		if ((now-rec) < 0 && order.htType == 'Togo') {
 			// console.log("Printing ticket from Order::::", order);
-			// Ticket.$remove().then(function(){
-				//Receipt.$value = $scope.order_printing;
+			Ticket.$remove().then(function(){
 				Ticket.$add(order).then(function(){
 					//$window.location.reload();
 				});
-			// });
+			});
 		}
 	});
 
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
-		console.log("Receipt Printing..", order);
+		console.log("Receipt Printing..", snapshot.snapshot);
 		$scope.order_printing = order;
 		setTimeout(function(){
 			window.print();
-			Ticket.child(order.$id).$remove().then(function(){
-				console.log("Removed: ", order);
-			})
 		}, 0);
 	});
 }])
