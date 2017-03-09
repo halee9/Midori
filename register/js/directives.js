@@ -92,7 +92,8 @@ angular.module('myApp.directives', [])
 	  		order: '=',
 	  		types: '=',
 	  		back: '&',
-	  		done: '&',
+        done: '&',
+        print: '&',
 	  		itemDone: '&'
 	  	},
 	  	controller: function($scope, $element) {
@@ -190,7 +191,3 @@ angular.module('myApp.directives', [])
 
 
 ;
-
-
-
-
