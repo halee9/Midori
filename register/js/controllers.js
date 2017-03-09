@@ -8,7 +8,25 @@ angular.module('myApp.controllers', [])
 
 }])
 
-.controller('TicketPrintingCtrl', ['$scope', 'Ticket', '$window', function($scope, Ticket, $window) {
+.controller('TicketPrintingCtrl', ['$scope', 'Ticket', '$window', 'Orders',
+	function($scope, Ticket, $window, Orders) {
+
+	$scope.orders = Orders;
+	var now = new Date();
+	$scope.orders.$on("child_added", function(snapshot){
+		var order = snapshot.snapshot.value;
+		var rec = new Date(order.created_at);
+		if ((now-rec) < 0 && order.htType == 'Togo') {
+			console.log("Printing ticket from Order::::", order);
+			Ticket.$remove().then(function(){
+				//Receipt.$value = $scope.order_printing;
+				Ticket.$add(order).then(function(){
+					//$window.location.reload();
+				});
+			});
+		}
+	});
+
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
@@ -378,11 +396,11 @@ angular.module('myApp.controllers', [])
 	var now = new Date();
 	$scope.orders.$on("child_added", function(snapshot){
 		var order = snapshot.snapshot.value;
-		var rec = new Date(order.created_at);
-		if ((now-rec) < 0 && order.htType == 'Togo') {
-			console.log("pprintting_tikettt", order);
-			$scope.print_ticket(order)
-		}
+		// var rec = new Date(order.created_at);
+		// if ((now-rec) < 0 && order.htType == 'Togo') {
+		// 	console.log("pprintting_tikettt", order);
+		// 	$scope.print_ticket(order)
+		// }
 		/*
 		console.log(order);
 		if (order.items) {
