@@ -8,34 +8,35 @@ angular.module('myApp.controllers', [])
 
 }])
 
-.controller('TicketPrintingCtrl', ['$scope', 'Ticket', '$window', 'Orders',
-	function($scope, Ticket, $window, Orders) {
+.controller('TicketPrintingCtrl', ['$scope', 'Ticket', '$window', 'Orders', '$timeout',
+	function($scope, Ticket, $window, Orders, $timeout) {
 
 	$scope.orders = Orders;
 	var now = new Date();
-	$scope.orders.$on("child_added", function(snapshot){
-		var order = snapshot.snapshot.value;
-		var rec = new Date(order.created_at);
-		if ((now-rec) < 0 && order.htType == 'Togo') {
-			// console.log("Printing ticket from Order::::", order);
-			Ticket.$remove().then(function(){
+	Ticket.$remove().then(function(){
+		$scope.orders.$on("child_added", function(snapshot){
+			var order = snapshot.snapshot.value;
+			var rec = new Date(order.created_at);
+			if ((now-rec) < 0 && order.htType == 'Togo') {
+				// console.log("Printing ticket from Order::::", order);
 				Ticket.$add(order).then(function(){
 					//$window.location.reload();
 				});
-			});
-		}
-	});
+			}
+		});
+	}
 
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
 		let key = snapshot.snapshot.name;
 		var order = snapshot.snapshot.value;
 		// console.log("Receipt Printing..", snapshot.snapshot);
-		$scope.order_printing = order;
-		setTimeout(function(){
-			window.print();
-			// Ticket.child(key).remove();
-		}, 0);
+		$timeout(function(){
+			$scope.order_printing = order;
+			$timeout(function(){
+				$window.print();
+			});
+		})
 	});
 }])
 
