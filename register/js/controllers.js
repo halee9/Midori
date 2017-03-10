@@ -34,6 +34,7 @@ angular.module('myApp.controllers', [])
 		// $timeout(function(){
 			$scope.order_printing = order;
 			setTimeout(function(){
+				console.log("printing...");
 				window.print();
 			},0);
 		// })
