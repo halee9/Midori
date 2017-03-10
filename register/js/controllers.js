@@ -31,12 +31,12 @@ angular.module('myApp.controllers', [])
 		let key = snapshot.snapshot.name;
 		var order = snapshot.snapshot.value;
 		// console.log("Receipt Printing..", snapshot.snapshot);
-		$timeout(function(){
+		// $timeout(function(){
 			$scope.order_printing = order;
 			$timeout(function(){
 				$window.print();
 			});
-		})
+		// })
 	});
 }])
 
