@@ -33,9 +33,9 @@ angular.module('myApp.controllers', [])
 		// console.log("Receipt Printing..", snapshot.snapshot);
 		// $timeout(function(){
 			$scope.order_printing = order;
-			$timeout(function(){
+			setTimeout(function(){
 				$window.print();
-			});
+			},0);
 		// })
 	});
 }])
