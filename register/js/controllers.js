@@ -24,7 +24,7 @@ angular.module('myApp.controllers', [])
 				});
 			}
 		});
-	}
+	});
 
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
