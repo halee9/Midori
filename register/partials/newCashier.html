@@ -97,7 +97,7 @@
 							<div>{{menu.abbr}}</div>
 							<p class="{{menu.textColor}}">{{menu.name}}</p>
 							<div ng-show="menu.type == 'Group'" class="tag blue">Group</div>
-							<div class="tag red">{{menus[menus[menu.$id].parent].name}}</div>
+							<div class="tag red">{{menu.price}} {{menus[menus[menu.$id].parent].name}}</div>
 				  		</button>
 				  	</div>
 					<div class="col-sm-4 col-md-3" style="padding: 0 5px" ng-show="menuUpdateMode">
@@ -383,5 +383,3 @@
 </div>
 
 </div>
-
-
