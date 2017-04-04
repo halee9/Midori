@@ -1,6 +1,7 @@
 'use strict';
 
 /* Controllers */
+var TAX_RATE = 10.1;
 
 angular.module('myApp.newCashierCtrl', [])
 
@@ -255,7 +256,7 @@ angular.module('myApp.newCashierCtrl', [])
 		});
 		//console.log("subtotal="+subtotal);
 		$scope.order.subtotal = subtotal = parseFloat(subtotal).toFixed(2);
-		$scope.order.tax = tax = (parseFloat(subtotal) * 9.6 / 100).toFixed(2);
+		$scope.order.tax = tax = (parseFloat(subtotal) * TAX_RATE / 100).toFixed(2);
 		$scope.order.total = total = (parseFloat(subtotal) + parseFloat(tax)).toFixed(2);
 	}
 
