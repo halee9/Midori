@@ -257,7 +257,6 @@ angular.module('myApp.newCashierCtrl', [])
 		//console.log("subtotal="+subtotal);
 		$scope.order.subtotal = subtotal = parseFloat(subtotal).toFixed(2);
 		$scope.order.tax = tax = (parseFloat(subtotal) * TAX_RATE / 100).toFixed(2);
-		console.log("TAX: ", $scope.order.tax, TAX_RATE);
 		$scope.order.total = total = (parseFloat(subtotal) + parseFloat(tax)).toFixed(2);
 	}
 
