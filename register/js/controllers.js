@@ -43,8 +43,8 @@ angular.module('myApp.controllers', [])
 		console.log('start print: ', queue.length, queue);
 		if (queue.length > 0) {
 			$scope.order_printing = queue.splice(0,1)[0];
-			console.log($scope.order_printing);
 			setTimeout(function(){
+				console.log($scope.order_printing);
 				window.print();
 			},0);
 		}
