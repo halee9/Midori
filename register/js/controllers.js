@@ -39,6 +39,13 @@ angular.module('myApp.controllers', [])
 	// });
 
 	var queue = [];
+	$scope.order_printing = {};
+	Ticket.$on("child_added", function(snapshot){
+		let key = snapshot.snapshot.name;
+		var order = snapshot.snapshot.value;
+		queue.push(order);
+	});
+
 	(function print_queue(){
 		console.log('start print: ', queue.length, queue);
 		if (queue.length > 0) {
@@ -51,13 +58,6 @@ angular.module('myApp.controllers', [])
 		setTimeout(print_queue, 5000);
 	})();
 
-	$scope.order_printing = {};
-	Ticket.$on("child_added", function(snapshot){
-		let key = snapshot.snapshot.name;
-		var order = snapshot.snapshot.value;
-		queue.push(order);
-		// print_queue();
-	});
 
 }])
 
