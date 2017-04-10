@@ -26,18 +26,6 @@ angular.module('myApp.controllers', [])
 		});
 	});
 
-	// var queue = [];
-	// $scope.order_printing = {};
-	// Ticket.$on("child_added", function(snapshot){
-	// 	let key = snapshot.snapshot.name;
-	// 	var order = snapshot.snapshot.value;
-	// 	queue.push(order);
-	// 	$scope.order_printing = order;
-	// 	setTimeout(function(){
-	// 		window.print();
-	// 	},0);
-	// });
-
 	var queue = [];
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
@@ -57,6 +45,38 @@ angular.module('myApp.controllers', [])
 		}
 		$timeout(print_queue, 1000);
 	})();
+
+
+}])
+
+.controller('OldTicketPrintingCtrl', ['$scope', 'Ticket', '$window', 'Orders', '$timeout',
+	function($scope, Ticket, $window, Orders, $timeout) {
+
+	$scope.orders = Orders;
+	var now = new Date();
+	Ticket.$remove().then(function(){
+		$scope.orders.$on("child_added", function(snapshot){
+			var order = snapshot.snapshot.value;
+			var rec = new Date(order.created_at);
+			if ((now-rec) < 0 && order.htType == 'Togo') {
+				// console.log("Printing ticket from Order::::", order);
+				Ticket.$add(order).then(function(){
+					//$window.location.reload();
+				});
+			}
+		});
+	});
+
+	$scope.order_printing = {};
+	Ticket.$on("child_added", function(snapshot){
+		let key = snapshot.snapshot.name;
+		var order = snapshot.snapshot.value;
+		queue.push(order);
+		$scope.order_printing = order;
+		setTimeout(function(){
+			window.print();
+		},0);
+	});
 
 
 }])

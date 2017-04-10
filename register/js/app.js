@@ -67,7 +67,7 @@ var myApp = angular.module('myApp', [
 	$routeProvider
 		.when('/printing', {
 			templateUrl: 'partials/printing.html',
-			controller: 'PrintingCtrl'
+			controller: 'OldTicketPrintingCtrl'
 		});
 	$routeProvider
 		.when('/ticketPrinting', {
