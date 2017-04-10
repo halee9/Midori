@@ -26,18 +26,38 @@ angular.module('myApp.controllers', [])
 		});
 	});
 
+	// var queue = [];
+	// $scope.order_printing = {};
+	// Ticket.$on("child_added", function(snapshot){
+	// 	let key = snapshot.snapshot.name;
+	// 	var order = snapshot.snapshot.value;
+	// 	queue.push(order);
+	// 	$scope.order_printing = order;
+	// 	setTimeout(function(){
+	// 		window.print();
+	// 	},0);
+	// });
+
+	var queue = [];
+	(function print_queue(){
+		console.log('start print: ', queue.length);
+		if (queue.length > 0) {
+			$scope.order_printing = queue.splice(0,1);
+			setTimeout(function(){
+				window.print();
+			},0);
+		}
+		setTimeout(print_queue, 5000);
+	})();
+
 	$scope.order_printing = {};
 	Ticket.$on("child_added", function(snapshot){
 		let key = snapshot.snapshot.name;
 		var order = snapshot.snapshot.value;
-		// console.log("Receipt Printing..", snapshot.snapshot);
-		// $timeout(function(){
-			$scope.order_printing = order;
-			setTimeout(function(){
-				window.print();
-			},0);
-		// })
+		queue.push(order);
+		// print_queue();
 	});
+
 }])
 
 .controller('ReceiptPrintingCtrl', ['$scope', 'Receipt', '$window', function($scope, Receipt, $window) {
