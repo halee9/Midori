@@ -55,7 +55,7 @@ angular.module('myApp.controllers', [])
 				window.print();
 			},0);
 		}
-		$timeout(print_queue, 0);
+		$timeout(print_queue, 1000);
 	})();
 
 
