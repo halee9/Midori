@@ -41,9 +41,12 @@ angular.module('myApp.controllers', [])
 			$timeout(function(){
 				// console.log($scope.order_printing);
 				window.print();
+				print_queue();	
 			},0);
 		}
-		$timeout(print_queue, 3000);
+		else {
+			$timeout(print_queue, 3000);
+		}
 	})();
 
 
