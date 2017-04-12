@@ -47,9 +47,9 @@ angular.module('myApp.controllers', [])
 	})();
 
 	window.onafterprint = function(){
-	   console.log("Printing completed...");
+	   console.log("Printing completed...", new Date());
 	}
-	
+
 }])
 
 .controller('OldTicketPrintingCtrl', ['$scope', 'Ticket', '$window', 'Orders', '$timeout',
