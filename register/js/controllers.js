@@ -43,7 +43,7 @@ angular.module('myApp.controllers', [])
 				window.print();
 			},0);
 		}
-		// $timeout(print_queue, 3000);
+		else $timeout(print_queue, 3000);
 	})();
 
 	window.onafterprint = function(){
