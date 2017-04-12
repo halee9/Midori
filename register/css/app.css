@@ -187,7 +187,8 @@ body {
 	white-space: normal;
 	position: relative;
 	padding: 5px;
-	font-size: 120%;
+	font-size: 100%;
+	line-height: 100%;
 }
 .menu p {
 	font-size: 12px;
