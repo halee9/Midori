@@ -34,7 +34,7 @@ angular.module('myApp.controllers', [])
 		queue.push(order);
 	});
 
-	(function print_queue(){
+	var print_ticket = (function print_queue(){
 		// console.log('start print: ', queue.length, queue);
 		if (queue.length > 0) {
 			$scope.order_printing = queue.splice(0,1)[0];
@@ -44,11 +44,12 @@ angular.module('myApp.controllers', [])
 			},0);
 		}
 		else $timeout(print_queue, 3000);
+		return print_queue;
 	})();
 
 	window.onafterprint = function(){
 	   console.log("Printing completed...", new Date());
-		 print_queue();
+		 print_ticket();
 	}
 
 }])
