@@ -46,7 +46,10 @@ angular.module('myApp.controllers', [])
 		$timeout(print_queue, 3000);
 	})();
 
-
+	window.onafterprint = function(){
+	   console.log("Printing completed...");
+	}
+	
 }])
 
 .controller('OldTicketPrintingCtrl', ['$scope', 'Ticket', '$window', 'Orders', '$timeout',
