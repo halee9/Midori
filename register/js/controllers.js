@@ -43,11 +43,12 @@ angular.module('myApp.controllers', [])
 				window.print();
 			},0);
 		}
-		$timeout(print_queue, 3000);
+		// $timeout(print_queue, 3000);
 	})();
 
 	window.onafterprint = function(){
 	   console.log("Printing completed...", new Date());
+		 print_queue();
 	}
 
 }])
