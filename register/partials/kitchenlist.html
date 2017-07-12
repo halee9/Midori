@@ -1,4 +1,4 @@
-<div class="block kitchenList" ng-class="{grey: (order.state=='Done'), bg_yellow: (order.state=='Arrived')}">
+<div class="kitchenList" ng-class="{grey: (order.state=='Done'), bg_yellow: (order.state=='Arrived')}">
 	<div class="pull-right text-right">
 		<!--<span ng-hide="order.orderType!='In-person'">
 			<span class="small-panel" ng-class="{bg_blue: (order.htType=='Togo'), bg_red: (order.htType!='Togo')}">{{order.htType | firstOne}}</span>
@@ -15,9 +15,6 @@
 			<span class="duration text-right text-blue" ng-class="{grey: (order.state=='Done')}">{{ order.diff || 0 }}</span>
 		</span>
 		<!--<button ng-show="order.state=='Ready'" ng-click="back()">-</button>-->
-		<br>
-		<span class="small text-right red" ng-class="{grey: (order.state=='Done')}">{{ order.reserved_time | date:'shortTime' }}</span>
-		<span class="small text-right red" ng-class="{grey: (order.state=='Done')}" ng-show="(order.orderType != 'In-person') && (order.htType == 'Here')">HERE</span>
 	</div>
 	<div>
 		<div ng-repeat="item in order.items" ng-hide="item.noDisplay" ng-class="{bg_light_green: (item.job=='Grill'), bg_light_red: (item.job=='Wok'), grey: (order.state=='Done'), smaller: item.done}">
@@ -34,5 +31,7 @@
 			<!--<span>{{ item.abbr }}</span>-->
 			<div class="smallfont" ng-class="{grey: (order.state=='Done')}" style="line-height:120%;">{{item | optionsToString2}}</div>
 		</div>
+		<span class="small text-right red" ng-class="{grey: (order.state=='Done')}">{{ order.reserved_time | date:'shortTime' }}</span>
+		<span class="small text-right red" ng-class="{grey: (order.state=='Done')}" ng-show="(order.orderType != 'In-person') && (order.htType == 'Here')">HERE</span>
 	</div>
 </div>
