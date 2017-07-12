@@ -104,7 +104,7 @@ angular.module('myApp.directives', [])
 	  	},
 	  	link: function(scope, element, attrs) {
 	  	},
-		templateUrl: 'partials/kitchenlist.html?v=47'
+		templateUrl: 'partials/kitchenlist.html?v=48'
 	};
 })
 
