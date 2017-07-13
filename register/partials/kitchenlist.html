@@ -31,7 +31,9 @@
 			<!--<span>{{ item.abbr }}</span>-->
 			<div class="smallfont" ng-class="{grey: (order.state=='Done')}" style="line-height:120%;">{{item | optionsToString2}}</div>
 		</div>
-		<span class="small text-right red" ng-class="{grey: (order.state=='Done')}">{{ order.reserved_time | date:'shortTime' }}</span>
-		<span class="small text-right red" ng-class="{grey: (order.state=='Done')}" ng-show="(order.orderType != 'In-person') && (order.htType == 'Here')">HERE</span>
+		<div class="text-right">
+			<span class="small text-right red" ng-class="{grey: (order.state=='Done')}">{{ order.reserved_time | date:'shortTime' }}</span>
+			<span class="small text-right red" ng-class="{grey: (order.state=='Done')}" ng-show="(order.orderType != 'In-person') && (order.htType == 'Here')">HERE</span>
+		</div>
 	</div>
 </div>
