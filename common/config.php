@@ -1,8 +1,8 @@
 <?php
 	$hostname='localhost';
 	$databasename='midori';
-	$username="adminArD4Z23";
-	$password='mQtWfm33iB5P';
+	$username="admin";
+	$password='midori7273';
 
 date_default_timezone_set("America/Los_Angeles");
 
