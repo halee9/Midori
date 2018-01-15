@@ -21,7 +21,7 @@ include '../common/session_check.php';
     <script src="../common/jquery/jquery_cookie/jquery.cookie.js"></script>
     <script src="../common/JSON/json2.js"></script>
     <script src="../common/store_json.js?v=<?=$vt?>"></script>
-    <script src="<? echo $purename . '.js?v='.$vt ?>"></script>
+    <!-- <script src="<? echo $purename . '.js?v='.$vt ?>"></script> -->
     <script src="t_header.js?v=<?=$vt?>"></script>
     <script src="../common/store_common.js?v=<?=$vt?>"></script>
     <link href="t_store.css?v=<?=$vt?>" rel="stylesheet" type="text/css" />
